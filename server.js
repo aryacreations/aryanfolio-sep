@@ -4,12 +4,35 @@ const path = require("path");
 const crypto = require("crypto");
 const { MongoClient } = require("mongodb");
 
-const PORT = 4173;
+// Simple .env file loader for Node.js
+const envPath = path.join(__dirname, ".env");
+if (fs.existsSync(envPath)) {
+  const envContent = fs.readFileSync(envPath, "utf8");
+  envContent.split("\n").forEach((line) => {
+    const trimmed = line.trim();
+    if (trimmed && !trimmed.startsWith("#")) {
+      const idx = trimmed.indexOf("=");
+      if (idx !== -1) {
+        const key = trimmed.slice(0, idx).trim();
+        const val = trimmed.slice(idx + 1).trim();
+        if (!process.env[key]) {
+          process.env[key] = val;
+        }
+      }
+    }
+  });
+}
+
+const PORT = parseInt(process.env.PORT, 10) || 4173;
 const DATA_FILE = path.join(__dirname, "portfolio_data.json");
-const MONGO_URI = "mongodb+srv://aryanrajputdev_db_user:aryansans321@cluster0.v37bky3.mongodb.net/?appName=Cluster0";
-const DB_NAME = "portfolio_db";
-const COLLECTION_NAME = "portfolio_config";
-const DOC_ID = "active_portfolio";
+const MONGO_URI = process.env.MONGO_URI || "";
+const DB_NAME = process.env.DB_NAME || "portfolio_db";
+const COLLECTION_NAME = process.env.COLLECTION_NAME || "portfolio_config";
+const DOC_ID = process.env.DOC_ID || "active_portfolio";
+
+const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME || "";
+const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY || "";
+const CLOUDINARY_API_SECRET = process.env.CLOUDINARY_API_SECRET || "";
 
 let mongoClient = null;
 let db = null;
@@ -188,9 +211,13 @@ const server = http.createServer((req, res) => {
           throw new Error("No file provided");
         }
 
-        const cloudName = "su1rtayw";
-        const apiKey = "936979835917264";
-        const apiSecret = "wnVfpZ3LpuR07MTLbMLWZN1beGw";
+        if (!CLOUDINARY_CLOUD_NAME || !CLOUDINARY_API_KEY || !CLOUDINARY_API_SECRET) {
+          throw new Error("Cloudinary credentials not configured in environment (.env)");
+        }
+
+        const cloudName = CLOUDINARY_CLOUD_NAME;
+        const apiKey = CLOUDINARY_API_KEY;
+        const apiSecret = CLOUDINARY_API_SECRET;
 
         const timestamp = Math.round(new Date().getTime() / 1000);
         const signature = crypto.createHash("sha1").update("timestamp=" + timestamp + apiSecret).digest("hex");
