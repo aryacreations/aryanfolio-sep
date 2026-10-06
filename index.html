@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aryan Kumar · Full-Stack Developer & AI Agent Engineer</title>
+  <meta name="description" content="Portfolio of Aryan Kumar — Full-Stack Developer specializing in MERN Stack, AI Agents (LangChain, CrewAI, RAG), FastAPI, and WebSockets.">
+  <meta name="keywords" content="Aryan Kumar, aryacreations, Full Stack Developer, AI Agent Developer, LangChain, CrewAI, MERN Stack, FastAPI, WebRTC">
+  <meta name="author" content="Aryan Kumar">
+  <link rel="canonical" href="https://github.com/aryacreations">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aryan Kumar · Full-Stack Developer & AI Engineer">
+  <meta property="og:description" content="Portfolio of Aryan Kumar. Explore projects in MERN stack, LangChain, CrewAI, WebRTC voice extensions, and scalable backends.">
+  <meta property="og:image" content="assets/aryan.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP & Lenis Smooth Scroll -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Custom Retro Neubrutalist Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+  <div class="custom-cursor-dot" id="customCursorDot"></div>
+
+  <!-- STICKY RETRO NAVIGATION (§5) -->
+  <header class="nav" id="mainNav">
+    <div class="nav-container">
+      <a class="logo" href="#hero" id="navLogo">
+        <span class="logo-text">ARYAN</span><span class="chip">DEV</span>
+        <span class="status-indicator" title="Open to opportunities"></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Stack & Arsenal</a>
+        <a href="#projects" class="nav-link">All Projects</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#education" class="nav-link">Education & Certs</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-outline nav-resume-btn" href="assets/Aryan_Kumar_Resume.pdf" target="_blank" download="Aryan_Kumar_Resume.pdf" id="navResumeBtn">
+          <i data-lucide="file-text"></i>
+          <span>Resume</span>
+        </a>
+        <a class="btn btn-outline nav-resume-btn" href="admin.html" target="_blank" title="Manage Portfolio via Admin Studio" id="navAdminBtn">
+          <i data-lucide="settings"></i>
+          <span>Admin</span>
+        </a>
+        <a class="btn btn-primary hard-shadow" href="#contact" id="navCtaBtn">
+          <span>Let's Talk</span>
+          <i data-lucide="arrow-right"></i>
+        </a>
+        <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <span class="drawer-title">// NAVIGATION</span>
+      <button class="drawer-close" id="drawerCloseBtn" aria-label="Close menu">&times;</button>
+    </div>
+    <div class="drawer-links">
+      <a href="#hero" class="drawer-link">00 · Home</a>
+      <a href="#about" class="drawer-link">01 · About Aryan</a>
+      <a href="#skills" class="drawer-link">02 · Tech Stack</a>
+      <a href="#projects" class="drawer-link">03 · All Projects</a>
+      <a href="#experience" class="drawer-link">04 · Work Experience</a>
+      <a href="#education" class="drawer-link">05 · Certifications</a>
+      <a href="#contact" class="drawer-link">06 · Get In Touch</a>
+    </div>
+    <div class="drawer-footer">
+      <a class="btn btn-primary hard-shadow w-full" href="assets/Aryan_Kumar_Resume.pdf" target="_blank" download>
+        <i data-lucide="download"></i> Download Resume
+      </a>
+      <div class="drawer-socials">
+        <a href="https://github.com/aryacreations" target="_blank" rel="noopener noreferrer"><i data-lucide="github"></i></a>
+        <a href="https://www.linkedin.com/in/aryan-kumar-3562a1376" target="_blank" rel="noopener noreferrer"><i data-lucide="linkedin"></i></a>
+        <a href="mailto:aryanrajput.dev@gmail.com"><i data-lucide="mail"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- SECTION 1: HERO (§6 Dark Background) -->
+    <section class="section section-dark hero-section" id="hero">
+      <!-- Decorative Pixel-Art Motifs (§9) -->
+      <div class="pixel-corner top-left" aria-hidden="true">
+        <div class="pixel-staircase">
+          <span class="px-sq p1"></span>
+          <span class="px-sq p2"></span>
+          <span class="px-sq p3"></span>
+          <span class="px-sq p4"></span>
+          <span class="px-sq p5"></span>
+          <span class="px-sq p6"></span>
+        </div>
+      </div>
+      <div class="pixel-corner top-right" aria-hidden="true">
+        <div class="pixel-barchart">
+          <span class="px-bar b1"></span>
+          <span class="px-bar b2"></span>
+          <span class="px-bar b3"></span>
+          <span class="px-bar b4"></span>
+          <span class="px-bar b5"></span>
+        </div>
+      </div>
+      <div class="pixel-corner bottom-left" aria-hidden="true">
+        <div class="pixel-barchart flip">
+          <span class="px-bar b5"></span>
+          <span class="px-bar b3"></span>
+          <span class="px-bar b4"></span>
+          <span class="px-bar b1"></span>
+        </div>
+      </div>
+
+      <div class="container hero-container">
+        <!-- Center/Left Column: Intro & Headline -->
+        <div class="hero-content">
+          <!-- Mosaic Accent (§6 #2) -->
+          <div class="mosaic-accent" aria-hidden="true">
+            <span class="mosaic-tile tile-coral"></span>
+            <span class="mosaic-tile tile-cream"></span>
+            <span class="mosaic-tile tile-blue"></span>
+            <span class="mosaic-tile tile-gold"></span>
+          </div>
+
+          <!-- Eyebrow Line (§6 #3) -->
+          <div class="eyebrow hero-eyebrow">
+            FULL-STACK DEVELOPER · AI AGENT ENGINEER · MERN & PYTHON
+          </div>
+
+          <!-- Two-tone H1 (§6 #4) -->
+          <h1 class="hero-title">
+            <span class="title-line-1">Aryan Kumar</span>
+            <span class="title-line-2">Building Agentic AI & High-Throughput Web Platforms</span>
+          </h1>
+
+          <!-- Supporting Paragraph (§6 #5) -->
+          <p class="hero-description">
+            Passionate software engineer crafting full-stack web applications with <strong>MERN</strong> and production-grade 
+            <strong>AI Agentic systems</strong> using Python, LangChain, CrewAI, and RAG. Focused on low-latency backends, 
+            real-time WebSockets, WebRTC, and clean distributed architectures.
+          </p>
+
+          <!-- Action Buttons (§6 #6 & §10) -->
+          <div class="hero-actions">
+            <a class="btn btn-primary hard-shadow" href="#projects" id="heroProjectsBtn">
+              <span>Explore Projects (11+)</span>
+              <i data-lucide="arrow-down-right"></i>
+            </a>
+            <a class="btn btn-outline" href="assets/Aryan_Kumar_Resume.pdf" target="_blank" download="Aryan_Kumar_Resume.pdf" id="heroCvBtn">
+              <i data-lucide="download"></i>
+              <span>Download CV</span>
+            </a>
+            <div class="hero-social-pills">
+              <a href="https://github.com/aryacreations" target="_blank" rel="noopener noreferrer" class="social-pill" title="GitHub / aryacreations">
+                <i data-lucide="github"></i>
+                <span>aryacreations</span>
+              </a>
+              <a href="https://www.linkedin.com/in/aryan-kumar-3562a1376" target="_blank" rel="noopener noreferrer" class="social-pill" title="LinkedIn Profile">
+                <i data-lucide="linkedin"></i>
+                <span>aryan-kumar</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Metrics Bar (§6 #7 Trust Bar) -->
+          <div class="trust-bar">
+            <div class="trust-item">
+              <span class="trust-number">500+</span>
+              <span class="trust-label">Extension Downloads</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+              <span class="trust-number">&lt;150ms</span>
+              <span class="trust-label">RAG Latency (5k+ Docs)</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+              <span class="trust-number">300+</span>
+              <span class="trust-label">Orders / Day Handled</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+              <span class="trust-number">20+</span>
+              <span class="trust-label">GitHub Repositories</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Real Hero Image Polaroid Card (§12) -->
+        <div class="hero-media-wrapper">
+          <div class="polaroid-card hard-shadow-lg hero-portrait-polaroid">
+            <div class="polaroid-badge-top">
+              <span class="badge-dot"></span>
+              <span>AVAILABLE FOR ROLES · 2026</span>
+            </div>
+            <div class="polaroid-photo-frame">
+              <img src="assets/aryan.jpg" alt="Aryan Kumar - Full-Stack & AI Agent Developer" class="hero-avatar-img" id="heroImage" loading="eager">
+              <div class="polaroid-scanlines" aria-hidden="true"></div>
+            </div>
+            <div class="polaroid-caption">
+              <div class="caption-name">Aryan Kumar</div>
+              <div class="caption-role">MERN · FastApi · LangChain · RAG</div>
+              <div class="caption-meta">
+                <span><i data-lucide="map-pin"></i> Bhilai, India</span>
+                <span class="badge-edu">B.Tech CS '27 (CGPA 7.8)</span>
+              </div>
+            </div>
+            <!-- Neubrutalist corner tape effect -->
+            <div class="tape-strip top-right-tape" aria-hidden="true"></div>
+            <div class="tape-strip bottom-left-tape" aria-hidden="true"></div>
+          </div>
+
+          <!-- Floating Micro Badge -->
+          <div class="floating-tech-card hard-shadow">
+            <div class="tech-icon-circle">
+              <i data-lucide="cpu"></i>
+            </div>
+            <div class="tech-card-info">
+              <div class="tech-card-title">AI & Agentic Pipelines</div>
+              <div class="tech-card-desc">CrewAI · LangChain · DeepSeek R1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: ABOUT & ENGINEERING MINDSET (§7a Light Background) -->
+    <section class="section section-light" id="about">
+      <div class="container">
+        <div class="grid-2col align-start">
+          <!-- Left Column: Story & Photo Collage -->
+          <div class="about-left">
+            <div class="eyebrow eyebrow-light">01 · BIOGRAPHY & VISION</div>
+            <h2 class="section-heading text-ink">
+              ENGINEERING SOFTWARE THAT <span class="highlight-red">SOLVES REAL-WORLD PROBLEMS</span>
+            </h2>
+            <p class="body-lead">
+              I am a Computer Science undergraduate at Rungta International Skills University with a deep obsession for
+              building software that performs reliably in the wild.
+            </p>
+            <p class="body-text">
+              My engineering philosophy revolves around combining robust backend design (FastAPI, Express, Node.js) with
+              modern intelligent systems (CrewAI, LangChain, RAG architectures). Whether it's enabling peer-to-peer real-time
+              voice chat across 500+ gamers, orchestrating multi-agent systems for technical patent research, or managing 300+ daily
+              orders on a food delivery pipeline, I build software that feels instantaneous and rock-solid.
+            </p>
+
+            <!-- Polaroids Collage (§7a) -->
+            <div class="polaroid-collage">
+              <div class="polaroid-item polaroid-primary">
+                <div class="polaroid-inner">
+                  <div class="collage-badge">TECH LEAD</div>
+                  <div class="polaroid-text-content">
+                    <h4>Full Stack Developer Club</h4>
+                    <p>Leading 50+ student developers at Rungta International Skills University, organizing hands-on hackathons and sprint workshops.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="polaroid-item polaroid-secondary">
+                <div class="polaroid-inner">
+                  <div class="collage-badge gold-badge">AI AGENTS</div>
+                  <div class="polaroid-text-content">
+                    <h4>Multi-Agent Research</h4>
+                    <p>Deep-diving into Ollama, DeepSeek R1, OpenSearch, and Agentic RAG workflows to eliminate manual repetitive work.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Bordered Panel Feature List (§7a) -->
+          <div class="about-right">
+            <div class="subheading-accent">CORE VALUES & WORKING PRINCIPLES</div>
+            <div class="feature-panel hard-shadow">
+              <!-- Feature Row 1 -->
+              <div class="feature-row">
+                <div class="feature-marker">✦</div>
+                <div class="feature-body">
+                  <h3 class="feature-title">FULL-STACK PROBLEM SOLVING</h3>
+                  <p class="feature-desc">
+                    From relational & NoSQL database schemas (MongoDB, MySQL) to responsive frontend UIs (React.js, Modern CSS, GSAP) and scalable microservices.
+                  </p>
+                </div>
+              </div>
+              <!-- Feature Row 2 -->
+              <div class="feature-row">
+                <div class="feature-marker">✦</div>
+                <div class="feature-body">
+                  <h3 class="feature-title">PRODUCTION AI & AGENTIC ORCHESTRATION</h3>
+                  <p class="feature-desc">
+                    Designing deterministic RAG pipelines, autonomous research agents (CrewAI, LangChain), and Model Context Protocol (MCP) tool integrations.
+                  </p>
+                </div>
+              </div>
+              <!-- Feature Row 3 -->
+              <div class="feature-row">
+                <div class="feature-marker">✦</div>
+                <div class="feature-body">
+                  <h3 class="feature-title">LOW-LATENCY REAL-TIME COMMUNICATION</h3>
+                  <p class="feature-desc">
+                    Harnessing WebSockets and WebRTC for peer-to-peer voice streaming, instant signaling, and concurrent live order dispatching.
+                  </p>
+                </div>
+              </div>
+              <!-- Feature Row 4 -->
+              <div class="feature-row">
+                <div class="feature-marker">✦</div>
+                <div class="feature-body">
+                  <h3 class="feature-title">CLEAN ARCHITECTURE & AUTOMATION</h3>
+                  <p class="feature-desc">
+                    Prioritizing clean modular code, Docker containerization, postman testing, n8n automations, and AI-accelerated workflows with Claude Code & Antigravity.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Info Bar -->
+            <div class="quick-facts-box hard-shadow">
+              <div class="qfact">
+                <span class="qlabel">LOCATION</span>
+                <span class="qvalue">Bhilai, Chhattisgarh, India</span>
+              </div>
+              <div class="qfact">
+                <span class="qlabel">DEGREE</span>
+                <span class="qvalue">B.Tech Computer Science (2027)</span>
+              </div>
+              <div class="qfact">
+                <span class="qlabel">CGPA</span>
+                <span class="qvalue">7.8 / 10.0</span>
+              </div>
+              <div class="qfact">
+                <span class="qlabel">PHONE</span>
+                <span class="qvalue">+91-9334706652</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: TECHNICAL ARSENAL & SKILLS (§7b Light / Warm Accent) -->
+    <section class="section section-light-alt" id="skills">
+      <div class="container">
+        <div class="section-header-split">
+          <div>
+            <div class="eyebrow eyebrow-light">02 · TECHNICAL STACK</div>
+            <h2 class="section-heading text-ink">
+              TOOLS, FRAMEWORKS & <span class="highlight-red">AI ARSENAL</span>
+            </h2>
+          </div>
+          <p class="section-header-desc">
+            Carefully curated technologies honed across client freelance projects, hackathons, open-source repositories, and agentic platforms.
+          </p>
+        </div>
+
+        <!-- Skills Grid by Domain -->
+        <div class="skills-domain-grid">
+          <!-- Card 1: AI & Agentic Systems (Featured Highlight Card §7b) -->
+          <div class="skill-card featured-gold-card hard-shadow">
+            <div class="card-chip chip-gold">CORE FOCUS</div>
+            <div class="card-icon-header">
+              <i data-lucide="bot"></i>
+              <h3>AI & Agentic Systems</h3>
+            </div>
+            <p class="card-summary">Autonomous agents, context-aware RAG pipelines, and LLM integrations.</p>
+            <div class="skill-tag-cloud">
+              <span class="skill-tag">CrewAI</span>
+              <span class="skill-tag">LangChain</span>
+              <span class="skill-tag">RAG Pipelines</span>
+              <span class="skill-tag">MCP (Model Context)</span>
+              <span class="skill-tag">Ollama</span>
+              <span class="skill-tag">DeepSeek R1</span>
+              <span class="skill-tag">SerpAPI</span>
+              <span class="skill-tag">OpenSearch</span>
+              <span class="skill-tag">Prompt Engineering</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Full-Stack Web Development -->
+          <div class="skill-card hard-shadow">
+            <div class="card-chip">MERN & BEYOND</div>
+            <div class="card-icon-header">
+              <i data-lucide="layers"></i>
+              <h3>Full-Stack Web</h3>
+            </div>
+            <p class="card-summary">Modern reactive web frontends and high-performance server architectures.</p>
+            <div class="skill-tag-cloud">
+              <span class="skill-tag">React.js</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">Express.js</span>
+              <span class="skill-tag">FastAPI</span>
+              <span class="skill-tag">JavaScript (ES6+)</span>
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">HTML5 / CSS3</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">GSAP Animations</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Real-Time & Networking -->
+          <div class="skill-card hard-shadow">
+            <div class="card-chip">LOW LATENCY</div>
+            <div class="card-icon-header">
+              <i data-lucide="radio"></i>
+              <h3>Real-Time & APIs</h3>
+            </div>
+            <p class="card-summary">Instant messaging, peer-to-peer audio streams, and robust API endpoints.</p>
+            <div class="skill-tag-cloud">
+              <span class="skill-tag">WebSockets</span>
+              <span class="skill-tag">WebRTC (P2P Audio)</span>
+              <span class="skill-tag">Chrome Extension API</span>
+              <span class="skill-tag">RESTful APIs</span>
+              <span class="skill-tag">JWT Auth</span>
+              <span class="skill-tag">Open Journal Systems</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Databases & DevOps -->
+          <div class="skill-card hard-shadow">
+            <div class="card-chip">STORAGE & OPS</div>
+            <div class="card-icon-header">
+              <i data-lucide="database"></i>
+              <h3>Databases & DevOps</h3>
+            </div>
+            <p class="card-summary">Persistent data modeling, containerization, and automated workflows.</p>
+            <div class="skill-tag-cloud">
+              <span class="skill-tag">MongoDB</span>
+              <span class="skill-tag">MySQL</span>
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">Git / GitHub</span>
+              <span class="skill-tag">Postman</span>
+              <span class="skill-tag">Jupyter Notebook</span>
+              <span class="skill-tag">Linux / Bash</span>
+            </div>
+          </div>
+
+          <!-- Card 5: Automation & Next-Gen IDEs -->
+          <div class="skill-card hard-shadow">
+            <div class="card-chip">WORKFLOWS</div>
+            <div class="card-icon-header">
+              <i data-lucide="workflow"></i>
+              <h3>Automation & Agent IDEs</h3>
+            </div>
+            <p class="card-summary">Advanced developer tools multiplying engineering velocity.</p>
+            <div class="skill-tag-cloud">
+              <span class="skill-tag">n8n Automation</span>
+              <span class="skill-tag">Claude Code (Subagents)</span>
+              <span class="skill-tag">Google Antigravity</span>
+              <span class="skill-tag">Cursor AI</span>
+              <span class="skill-tag">VS Code</span>
+            </div>
+          </div>
+
+          <!-- Card 6: Computer Vision & Specialized -->
+          <div class="skill-card hard-shadow">
+            <div class="card-chip">SPECIALIZED</div>
+            <div class="card-icon-header">
+              <i data-lucide="scan-face"></i>
+              <h3>Computer Vision & AI</h3>
+            </div>
+            <p class="card-summary">Object tracking, motion sensors, and OpenCV processing.</p>
+            <div class="skill-tag-cloud">
+              <span class="skill-tag">OpenCV</span>
+              <span class="skill-tag">Motion Detection</span>
+              <span class="skill-tag">Face Recognition</span>
+              <span class="skill-tag">Django GST Billing</span>
+              <span class="skill-tag">IoT / Smart City</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: ALL PROJECTS SHOWCASE (§6/§7 Alternating Dark Background) -->
+    <section class="section section-dark projects-section" id="projects">
+      <!-- Decorative pixel motifs for section headers -->
+      <div class="pixel-corner top-right" aria-hidden="true">
+        <div class="pixel-barchart">
+          <span class="px-bar b2"></span>
+          <span class="px-bar b4"></span>
+          <span class="px-bar b1"></span>
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Section Header -->
+        <div class="section-header-center">
+          <div class="eyebrow eyebrow-salmon">03 · PORTFOLIO & REPOSITORIES</div>
+          <h2 class="section-title-white">
+            PROJECT SHOWCASE: <span class="highlight-blue">ALL 12+ PROJECTS BUILT & DEPLOYED</span>
+          </h2>
+          <p class="section-subtitle-white">
+            From production agentic research engines and WebRTC Chrome extensions to full-stack MERN platforms and microservices.
+          </p>
+        </div>
+
+        <!-- Filter Controls (Neubrutalist Buttons) -->
+        <div class="project-filters" id="projectFilters">
+          <button class="filter-btn active hard-shadow" data-filter="all">All Projects (12)</button>
+          <button class="filter-btn hard-shadow" data-filter="ai-agents">AI & Agents (3)</button>
+          <button class="filter-btn hard-shadow" data-filter="fullstack">Full-Stack & MERN (4)</button>
+          <button class="filter-btn hard-shadow" data-filter="realtime">Real-Time & WebRTC (2)</button>
+          <button class="filter-btn hard-shadow" data-filter="python-tools">Python & Backend (3)</button>
+        </div>
+
+        <!-- PROJECTS GRID: EVERY SINGLE RESUME & GITHUB PROJECT INCLUDED -->
+        <div class="projects-grid" id="projectsGrid">
+
+          <!-- PROJECT 1: Autonomous Agentic RAG Platform (FEATURED #1) -->
+          <article class="project-card featured-project-card hard-shadow-lg" data-category="ai-agents">
+            <div class="project-card-header">
+              <span class="card-badge badge-featured">★ FLAGSHIP AI PROJECT</span>
+              <span class="project-year">2026</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">Autonomous Agentic RAG Product Research Platform</h3>
+              <p class="project-tagline">
+                Multi-agent competitive research & patent intelligence system with sub-150ms semantic search.
+              </p>
+              
+              <div class="project-key-stats">
+                <div class="stat-pill"><strong>-85%</strong> Manual Research Time</div>
+                <div class="stat-pill"><strong>&lt;150ms</strong> Retrieval Across 5k+ Docs</div>
+                <div class="stat-pill"><strong>+30%</strong> Patent Search Accuracy</div>
+              </div>
+
+              <ul class="project-bullet-list">
+                <li>Built a multi-agent autonomous research platform using <strong>CrewAI</strong> and <strong>LangChain</strong> to eliminate manual patent research bottlenecks.</li>
+                <li>Implemented dense vector semantic search with <strong>OpenSearch</strong> delivering sub-150ms retrieval latency across 5,000+ complex technical documents.</li>
+                <li>Integrated local <strong>Ollama (DeepSeek R1)</strong> reasoning models with <strong>SerpAPI</strong> for real-time web synthesis and verification.</li>
+                <li>Architected an end-to-end Retrieval-Augmented Generation (RAG) pipeline for autonomous document discovery, market intelligence, and structured reporting.</li>
+              </ul>
+
+              <div class="project-tech-tags">
+                <span class="tech-tag">CrewAI</span>
+                <span class="tech-tag">LangChain</span>
+                <span class="tech-tag">Ollama</span>
+                <span class="tech-tag">DeepSeek R1</span>
+                <span class="tech-tag">SerpAPI</span>
+                <span class="tech-tag">OpenSearch</span>
+                <span class="tech-tag">RAG</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://github.com/aryacreations" target="_blank" rel="noopener noreferrer" class="btn btn-primary hard-shadow project-action-btn">
+                <i data-lucide="github"></i> <span>View Code</span>
+              </a>
+              <button class="btn btn-outline project-action-btn view-details-btn" data-project="rag-platform">
+                <i data-lucide="maximize-2"></i> <span>Architecture Specs</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- PROJECT 2: Vina Voice Chatting Extension (FEATURED #2) -->
+          <article class="project-card featured-project-card hard-shadow-lg" data-category="realtime">
+            <div class="project-card-header">
+              <span class="card-badge badge-live">● 500+ DOWNLOADS · 200+ USERS</span>
+              <span class="project-year">2026</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">Vina Voice Chatting Extension</h3>
+              <p class="project-tagline">
+                Low-latency peer-to-peer in-game voice communication Chrome extension for multiplayer teams.
+              </p>
+
+              <div class="project-key-stats">
+                <div class="stat-pill"><strong>500+</strong> Chrome Store Downloads</div>
+                <div class="stat-pill"><strong>2,000+</strong> Voice Minutes Logged</div>
+                <div class="stat-pill"><strong>P2P WebRTC</strong> Zero Disruptions</div>
+              </div>
+
+              <ul class="project-bullet-list">
+                <li>Built and deployed a real-time voice chat Chrome extension for multiplayer teams with 500+ downloads and 200+ active users.</li>
+                <li>Engineered peer-to-peer voice streaming using <strong>WebRTC</strong>, achieving ultra-low latency audio across 2,000+ voice minutes.</li>
+                <li>Created a robust <strong>WebSocket signaling server</strong> to handle peer discovery, ICE candidates, and seamless session reconnection.</li>
+                <li>Leveraged Chrome Extension APIs (Manifest V3) for non-intrusive background audio overlay without lagging gameplay frames.</li>
+              </ul>
+
+              <div class="project-tech-tags">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">WebRTC</span>
+                <span class="tech-tag">Chrome Extension API</span>
+                <span class="tech-tag">WebSockets</span>
+                <span class="tech-tag">Node.js</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://github.com/aryacreations/vina-voice-chatting-extension-" target="_blank" rel="noopener noreferrer" class="btn btn-primary hard-shadow project-action-btn">
+                <i data-lucide="github"></i> <span>Repository</span>
+              </a>
+              <button class="btn btn-outline project-action-btn view-details-btn" data-project="vina-extension">
+                <i data-lucide="info"></i> <span>System Details</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- PROJECT 3: YaariCircle – Meal Delivery Platform (FEATURED #3) -->
+          <article class="project-card featured-project-card hard-shadow-lg" data-category="fullstack">
+            <div class="project-card-header">
+              <span class="card-badge badge-production">⚡ 300+ ORDERS / DAY</span>
+              <span class="project-year">2026</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">YaariCircle – Multi-Role Meal Delivery Platform</h3>
+              <p class="project-tagline">
+                High-volume food ordering ecosystem with live WebSocket kitchen tracking & geolocation routing.
+              </p>
+
+              <div class="project-key-stats">
+                <div class="stat-pill"><strong>300+</strong> Orders / Day Processed</div>
+                <div class="stat-pill"><strong>10+</strong> Concurrent Operations</div>
+                <div class="stat-pill"><strong>MERN</strong> Full Production Stack</div>
+              </div>
+
+              <ul class="project-bullet-list">
+                <li>Developed full-stack multi-role meal delivery platform in MERN, handling 300+ orders per day across local fulfillment hubs.</li>
+                <li>Engineered complete Node.js, Express, and MongoDB backend with role-based JWT authentication (User, Kitchen, Rider, Admin).</li>
+                <li>Implemented real-time bidirectional order updates using <strong>WebSockets</strong> for kitchen prep queues and driver handoffs.</li>
+                <li>Integrated browser geolocation APIs to streamline delivery dispatch and compute accurate delivery routing estimates.</li>
+              </ul>
+
+              <div class="project-tech-tags">
+                <span class="tech-tag">MongoDB</span>
+                <span class="tech-tag">Express.js</span>
+                <span class="tech-tag">React.js</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">WebSockets</span>
+                <span class="tech-tag">JWT</span>
+                <span class="tech-tag">Geolocation</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://github.com/aryacreations" target="_blank" rel="noopener noreferrer" class="btn btn-primary hard-shadow project-action-btn">
+                <i data-lucide="github"></i> <span>View Code</span>
+              </a>
+              <button class="btn btn-outline project-action-btn view-details-btn" data-project="yaari-circle">
+                <i data-lucide="info"></i> <span>Live Architecture</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- PROJECT 4: Texserve Scalable E-Commerce Backend -->
+          <article class="project-card hard-shadow" data-category="python-tools">
+            <div class="project-card-header">
+              <span class="card-badge">CLIENT BACKEND</span>
+              <span class="project-year">2026</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">Texserve E-Commerce Scalable Backend</h3>
+              <p class="project-tagline">
+                Production e-commerce backend built with FastAPI, MongoDB, Docker, and clean layered architecture.
+              </p>
+              <p class="project-summary-text">
+                Engineered for Texserve Nexsus Pvt Ltd. Features secure JWT authorization, asynchronous MongoDB aggregation,
+                cart persistence, order state machines, and Docker containerized deployment.
+              </p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">MongoDB</span>
+                <span class="tech-tag">Docker</span>
+                <span class="tech-tag">JWT</span>
+                <span class="tech-tag">Python</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://github.com/aryacreations/e-commerce-backend" target="_blank" rel="noopener noreferrer" class="btn btn-primary hard-shadow project-action-btn">
+                <i data-lucide="github"></i> <span>Repository</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROJECT 5: AIIA-CTMS (Smart India Hackathon 2026) -->
+          <article class="project-card hard-shadow" data-category="fullstack">
+            <div class="project-card-header">
+              <span class="card-badge badge-sih">SIH 2026 NATIONAL PROJECT</span>
+              <span class="project-year">2026</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">AIIA-CTMS: Clinical Trial Management System</h3>
+              <p class="project-tagline">
+                Comprehensive healthcare clinical trial management platform developed for Smart India Hackathon.
+              </p>
+              <p class="project-summary-text">
+                Enables clinical researchers and medical staff to manage clinical trial protocols, participant cohorts,
+                adverse event logs, and compliance documentation under national standards.
+              </p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">HTML5 / JS</span>
+                <span class="tech-tag">Clinical Protocols</span>
+                <span class="tech-tag">SIH 2026</span>
+                <span class="tech-tag">Healthcare Tech</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://github.com/aryacreations/AIIA-CTMS-SIH-2026" target="_blank" rel="noopener noreferrer" class="btn btn-primary hard-shadow project-action-btn">
+                <i data-lucide="github"></i> <span>Repository</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROJECT 6: Task and Team Management System -->
+          <article class="project-card hard-shadow" data-category="fullstack">
+            <div class="project-card-header">
+              <span class="card-badge">ENTERPRISE SYSTEM</span>
+              <span class="project-year">2025</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">Task & Team Management Advanced System</h3>
+              <p class="project-tagline">
+                Enterprise workflow management engine with sprint roadmaps and role hierarchies.
+              </p>
+              <p class="project-summary-text">
+                Built with TypeScript and Node.js. Features Kanban task boards, milestone tracking, team assignments,
+                priority queues, and automated audit logs for collaborative team throughput.
+              </p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Team Workflows</span>
+                <span class="tech-tag">Kanban</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://github.com/aryacreations/Task-and-Team-management-system-advanced-project" target="_blank" rel="noopener noreferrer" class="btn btn-primary hard-shadow project-action-btn">
+                <i data-lucide="github"></i> <span>Repository</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROJECT 7: MoviePlex Streaming Platform -->
+          <article class="project-card hard-shadow" data-category="fullstack">
+            <div class="project-card-header">
+              <span class="card-badge">STREAMING UI</span>
+              <span class="project-year">2025</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">MoviePlex – Entertainment Streaming Platform</h3>
+              <p class="project-tagline">
+                Modern ad-free movie streaming interface with smart genre discovery & high-speed player.
+              </p>
+              <p class="project-summary-text">
+                Responsive frontend with dark aesthetic, real-time TMDB API integration, instant video playback trailers,
+                search debounce, and smooth content carousels.
+              </p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">REST APIs</span>
+                <span class="tech-tag">Media Streaming</span>
+                <span class="tech-tag">Responsive UI</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://github.com/aryacreations/movieplex" target="_blank" rel="noopener noreferrer" class="btn btn-primary hard-shadow project-action-btn">
+                <i data-lucide="github"></i> <span>Repository</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROJECT 8: Campus Connect Student Portal -->
+          <article class="project-card hard-shadow" data-category="fullstack">
+            <div class="project-card-header">
+              <span class="card-badge">COMMUNITY PORTAL</span>
+              <span class="project-year">2025</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">Campus Connect Multitasking Web App</h3>
+              <p class="project-tagline">
+                Unified college portal for study materials, event schedules, and peer collaboration.
+              </p>
+              <p class="project-summary-text">
+                Designed for university student bodies to coordinate notes sharing, departmental updates, club activities,
+                and academic schedules within a lightweight responsive interface.
+              </p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">HTML5 / CSS</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Student Community</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://github.com/aryacreations/campus-connect" target="_blank" rel="noopener noreferrer" class="btn btn-primary hard-shadow project-action-btn">
+                <i data-lucide="github"></i> <span>Repository</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROJECT 9: GST Billing & Invoicing Engine -->
+          <article class="project-card hard-shadow" data-category="python-tools">
+            <div class="project-card-header">
+              <span class="card-badge">FINTECH & TAX</span>
+              <span class="project-year">2025</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">GST Billing Project in Python & Django</h3>
+              <p class="project-tagline">
+                Automated tax invoice calculation engine with CGST/SGST breakdowns and printable bills.
+              </p>
+              <p class="project-summary-text">
+                Enterprise billing software allowing small businesses to generate compliant GST invoices, track product inventories,
+                manage client accounts, and produce downloadable tax ledgers.
+              </p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Django</span>
+                <span class="tech-tag">SQL</span>
+                <span class="tech-tag">GST Tax Engine</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://github.com/aryacreations/GST-Billing-Project-in-Python-Django" target="_blank" rel="noopener noreferrer" class="btn btn-primary hard-shadow project-action-btn">
+                <i data-lucide="github"></i> <span>Repository</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROJECT 10: Computer Vision Suite (Face & Motion Detection) -->
+          <article class="project-card hard-shadow" data-category="ai-agents">
+            <div class="project-card-header">
+              <span class="card-badge">COMPUTER VISION</span>
+              <span class="project-year">2026</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">OpenCV Motion & Face Detection Suite</h3>
+              <p class="project-tagline">
+                Real-time video feed surveillance systems with contour movement alarms & Haar cascade classifiers.
+              </p>
+              <p class="project-summary-text">
+                Dual computer vision projects capturing real-time camera frames to identify intruders through delta-frame thresholds
+                and detect multiple faces simultaneously with bounding boxes and timestamp logging.
+              </p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">OpenCV</span>
+                <span class="tech-tag">Motion Tracking</span>
+                <span class="tech-tag">Face Recognition</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://github.com/aryacreations/motion-detector-project-opencv" target="_blank" rel="noopener noreferrer" class="btn btn-primary hard-shadow project-action-btn">
+                <i data-lucide="github"></i> <span>Motion Detector</span>
+              </a>
+              <a href="https://github.com/aryacreations/face-detection-python-project" target="_blank" rel="noopener noreferrer" class="btn btn-outline project-action-btn">
+                <i data-lucide="scan"></i> <span>Face Detector</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROJECT 11: Bank Management System -->
+          <article class="project-card hard-shadow" data-category="python-tools">
+            <div class="project-card-header">
+              <span class="card-badge">FINANCIAL CORE</span>
+              <span class="project-year">2025</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">Bank Management System (Python OOP)</h3>
+              <p class="project-tagline">
+                Robust banking ledger application with CSV transaction audit trails & role validation.
+              </p>
+              <p class="project-summary-text">
+                Engineered with strict Python OOP concepts. Supports secure account creation, deposits, withdrawals,
+                balance inquiry, admin authentication, and automated statement generation.
+              </p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">Python OOP</span>
+                <span class="tech-tag">File Handling</span>
+                <span class="tech-tag">CSV Export</span>
+                <span class="tech-tag">Validation</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://github.com/aryacreations/Bank-Management-System" target="_blank" rel="noopener noreferrer" class="btn btn-primary hard-shadow project-action-btn">
+                <i data-lucide="github"></i> <span>Repository</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROJECT 12: SmartGarbage & IoT Systems -->
+          <article class="project-card hard-shadow" data-category="python-tools">
+            <div class="project-card-header">
+              <span class="card-badge">SMART CITIES</span>
+              <span class="project-year">2025</span>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">SmartGarbage – Municipal IoT Waste Routing</h3>
+              <p class="project-tagline">
+                Sensor-triggered waste management automation for clean smart city infrastructure.
+              </p>
+              <p class="project-summary-text">
+                Simulates ultrasonic bin-level telemetry, triggers automated collection alerts when bins reach 80% threshold,
+                and optimizes municipal truck routes to reduce fuel waste.
+              </p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">IoT Concept</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Smart City</span>
+                <span class="tech-tag">Automation</span>
+              </div>
+            </div>
+            <div class="project-card-footer">
+              <a href="https://github.com/aryacreations/SmartGarbage" target="_blank" rel="noopener noreferrer" class="btn btn-primary hard-shadow project-action-btn">
+                <i data-lucide="github"></i> <span>Repository</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- View All On GitHub CTA Bar -->
+        <div class="github-banner-card hard-shadow">
+          <div class="github-banner-left">
+            <i data-lucide="git-branch" class="banner-icon"></i>
+            <div>
+              <h3 class="banner-title">EXPLORE ALL 20+ REPOSITORIES ON GITHUB</h3>
+              <p class="banner-desc">Includes YouTube Downloader, Blog API Backend, Quantix-AI, and Open Source contributions.</p>
+            </div>
+          </div>
+          <a href="https://github.com/aryacreations" target="_blank" rel="noopener noreferrer" class="btn btn-primary hard-shadow">
+            <span>Visit @aryacreations</span>
+            <i data-lucide="external-link"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: WORK EXPERIENCE & LEADERSHIP (§7b / §8 Light Background) -->
+    <section class="section section-light" id="experience">
+      <div class="container">
+        <div class="section-header-split">
+          <div>
+            <div class="eyebrow eyebrow-light">04 · INDUSTRY EXPERIENCE</div>
+            <h2 class="section-heading text-ink">
+              PROVEN RESULTS IN <span class="highlight-red">CLIENT & COMMUNITY ROLES</span>
+            </h2>
+          </div>
+          <p class="section-header-desc">
+            Hands-on freelance software engineering engagements delivering scalable backends, full-stack platforms, and student community leadership.
+          </p>
+        </div>
+
+        <!-- Timeline Cards Pattern (§7b) -->
+        <div class="experience-cards-grid">
+
+          <!-- Card 1: Texserve Nexsus (Recent / Current Highlight §7b) -->
+          <div class="experience-card featured-gold-card hard-shadow">
+            <div class="exp-badge">FREELANCE BACKEND</div>
+            <div class="exp-period">DEC 2025 – JAN 2026 · REMOTE</div>
+            <h3 class="exp-role">Freelance Backend Developer</h3>
+            <div class="exp-company">Texserve Nexsus Pvt Ltd</div>
+            <ul class="exp-points">
+              <li>Architected and deployed a scalable e-commerce micro-backend using <strong>FastAPI</strong>, <strong>MongoDB</strong>, and <strong>Docker</strong>.</li>
+              <li>Engineered secure token-based <strong>JWT authentication</strong>, role guard middleware, and session validity.</li>
+              <li>Designed core shopping cart data structures and transactional order processing pipelines with clean layered architecture.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="exp-tag">FastAPI</span>
+              <span class="exp-tag">MongoDB</span>
+              <span class="exp-tag">Docker</span>
+              <span class="exp-tag">Clean Architecture</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Friends Foods and Company -->
+          <div class="experience-card hard-shadow">
+            <div class="exp-badge">FREELANCE FULL STACK</div>
+            <div class="exp-period">JAN 2026 – FEB 2026 · REMOTE</div>
+            <h3 class="exp-role">Freelance Full Stack Developer</h3>
+            <div class="exp-company">Friends Foods and Company</div>
+            <ul class="exp-points">
+              <li>Built a comprehensive meal delivery platform using <strong>React</strong>, <strong>Node.js</strong>, and <strong>MongoDB</strong> from ground zero.</li>
+              <li>Implemented real-time live order dispatching and status tracking for kitchen operators and hungry customers.</li>
+              <li>Constructed an administrative dashboard for inventory adjustments, order analytics, and user role permission management.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="exp-tag">React.js</span>
+              <span class="exp-tag">Node.js</span>
+              <span class="exp-tag">MongoDB</span>
+              <span class="exp-tag">Real-Time UI</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Probecell Journal -->
+          <div class="experience-card hard-shadow">
+            <div class="exp-badge">OJS DEVELOPER</div>
+            <div class="exp-period">MAR 2026 · REMOTE</div>
+            <h3 class="exp-role">Freelance OJS Developer</h3>
+            <div class="exp-company">Probecell Journal</div>
+            <ul class="exp-points">
+              <li>Deployed and customized <strong>Open Journal Systems (OJS)</strong> on production servers using PHP and MySQL.</li>
+              <li>Configured automated Digital Object Identifier (<strong>DOI</strong>) integration via Crossref for peer-reviewed academic papers.</li>
+              <li>Setup PKP Preservation Network (<strong>PKP PN</strong>) long-term digital archiving and configured journal editorial workflows.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="exp-tag">PHP</span>
+              <span class="exp-tag">MySQL</span>
+              <span class="exp-tag">OJS</span>
+              <span class="exp-tag">DOI / Crossref</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Position of Responsibility Banner -->
+        <div class="leadership-banner hard-shadow">
+          <div class="leadership-left">
+            <div class="leadership-tag">LEADERSHIP ROLE</div>
+            <h3 class="leadership-title">Team Leader · Full Stack Developer Club</h3>
+            <p class="leadership-org">Rungta International Skills University · Ongoing</p>
+            <p class="leadership-desc">
+              Lead a vibrant student developer community of 50+ members focused on modern web engineering. 
+              Coordinate hands-on project sprints, mentor junior programmers in JavaScript and Python, and organize technical workshops and code-reviews.
+            </p>
+          </div>
+          <div class="leadership-stats">
+            <div class="lstat-box">
+              <span class="lstat-num">50+</span>
+              <span class="lstat-txt">Students Mentored</span>
+            </div>
+            <div class="lstat-box">
+              <span class="lstat-num">10+</span>
+              <span class="lstat-txt">Sprint Sessions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: CERTIFICATIONS & EDUCATION (Dark Background) -->
+    <section class="section section-dark" id="education">
+      <div class="container">
+        <div class="section-header-center">
+          <div class="eyebrow eyebrow-salmon">05 · CREDENTIALS & FOUNDATION</div>
+          <h2 class="section-title-white">
+            CERTIFICATIONS & <span class="highlight-blue">ACADEMIC EXCELLENCE</span>
+          </h2>
+          <p class="section-subtitle-white">
+            Continuous technical mastery verified by industry credentials and academic rigor.
+          </p>
+        </div>
+
+        <div class="grid-2col">
+          <!-- Certifications List Panel -->
+          <div class="cert-panel hard-shadow">
+            <h3 class="panel-inner-title">// VERIFIED CERTIFICATIONS</h3>
+            
+            <div class="cert-item">
+              <div class="cert-icon-box">
+                <i data-lucide="award"></i>
+              </div>
+              <div class="cert-info">
+                <h4 class="cert-name">Claude Code in Action</h4>
+                <div class="cert-issuer">Anthropic</div>
+                <p class="cert-desc">Mastery in Claude Code CLI, agentic orchestration, subagents, and automated developer tooling.</p>
+                <span class="cert-badge">Anthropic · Subagents</span>
+              </div>
+            </div>
+
+            <div class="cert-item">
+              <div class="cert-icon-box">
+                <i data-lucide="terminal"></i>
+              </div>
+              <div class="cert-info">
+                <h4 class="cert-name">Foundation: Introduction to LangChain – Python</h4>
+                <div class="cert-issuer">LangChain Official</div>
+                <p class="cert-desc">Chaining models, memory structures, document loaders, vector stores, and custom LLM agent tools.</p>
+                <span class="cert-badge">LangChain · Python · RAG</span>
+              </div>
+            </div>
+
+            <div class="cert-item">
+              <div class="cert-icon-box">
+                <i data-lucide="database"></i>
+              </div>
+              <div class="cert-info">
+                <h4 class="cert-name">SQL Certified</h4>
+                <div class="cert-issuer">Intellipaat</div>
+                <p class="cert-desc">Advanced relational database querying, joins, indexing, subqueries, and stored procedures.</p>
+                <span class="cert-badge">SQL · Data Modeling</span>
+              </div>
+            </div>
+
+            <div class="cert-item">
+              <div class="cert-icon-box">
+                <i data-lucide="code-2"></i>
+              </div>
+              <div class="cert-info">
+                <h4 class="cert-name">MERN Full Stack Development</h4>
+                <div class="cert-issuer">Coding Spoon Edutech Pvt. Ltd.</div>
+                <p class="cert-desc">Full lifecycle MERN application development: MongoDB, Express.js, React.js, and Node.js.</p>
+                <span class="cert-badge">MERN Stack · Full Lifecycle</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Education & Academic Foundation Card -->
+          <div class="education-card hard-shadow">
+            <h3 class="panel-inner-title">// FORMAL EDUCATION</h3>
+
+            <div class="edu-main-block">
+              <div class="edu-year-tag">EXPECTED 2027 · FULL-TIME</div>
+              <h4 class="edu-degree">B.Tech in Computer Science & Engineering</h4>
+              <div class="edu-university">Rungta International Skills University</div>
+              <div class="edu-location"><i data-lucide="map-pin"></i> Bhilai, Chhattisgarh, India</div>
+              
+              <div class="edu-score-badge hard-shadow">
+                <span class="cgpa-label">CUMULATIVE CGPA</span>
+                <span class="cgpa-val">7.8 / 10.0</span>
+              </div>
+
+              <div class="edu-coursework">
+                <span class="cw-heading">CORE ACADEMIC COURSEWORK:</span>
+                <div class="cw-tags">
+                  <span class="cw-tag">Database Management Systems (DBMS)</span>
+                  <span class="cw-tag">Operating Systems</span>
+                  <span class="cw-tag">Computer Networks</span>
+                  <span class="cw-tag">Python Programming</span>
+                  <span class="cw-tag">Fundamentals of Artificial Intelligence</span>
+                  <span class="cw-tag">Object-Oriented Programming (OOP)</span>
+                </div>
+              </div>
+
+              <div class="edu-quote-box">
+                <p>"Focusing on the practical application of algorithms, distributed data streams, and artificial intelligence to create tangible value."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: INTERACTIVE TERMINAL & GET IN TOUCH (§8 CTA Section Dark/Light Combo) -->
+    <section class="section section-light cta-contact-section" id="contact">
+      <div class="container">
+        <div class="grid-2col align-start">
+          <!-- Left Column: CTA Pitch & Fast Actions (§8) -->
+          <div class="cta-left">
+            <div class="eyebrow eyebrow-light">06 · INITIATE CONTACT</div>
+            <h2 class="section-heading text-ink">
+              READY TO BUILD <span class="highlight-red">SOMETHING EXCEPTIONAL?</span>
+            </h2>
+            <p class="body-lead">
+              I am actively seeking software engineering roles, full-stack developer internships, and freelance contracts in AI agent development and MERN backends.
+            </p>
+            <p class="body-text">
+              Have a product idea, technical opening, or want to discuss agentic RAG architectures? 
+              Drop me an email, call directly, or copy my contact details with one click.
+            </p>
+
+            <!-- Quick Copy Contact Pills -->
+            <div class="contact-card-box hard-shadow">
+              <div class="contact-method-row">
+                <div class="cm-icon"><i data-lucide="mail"></i></div>
+                <div class="cm-details">
+                  <span class="cm-label">DIRECT EMAIL</span>
+                  <a href="mailto:aryanrajput.dev@gmail.com" class="cm-value" id="emailVal">aryanrajput.dev@gmail.com</a>
+                </div>
+                <button class="copy-btn hard-shadow" data-copy="aryanrajput.dev@gmail.com" title="Copy email">
+                  <i data-lucide="copy"></i>
+                </button>
+              </div>
+
+              <div class="contact-method-row">
+                <div class="cm-icon"><i data-lucide="phone"></i></div>
+                <div class="cm-details">
+                  <span class="cm-label">PHONE / WHATSAPP</span>
+                  <a href="tel:+919334706652" class="cm-value" id="phoneVal">+91-9334706652</a>
+                </div>
+                <button class="copy-btn hard-shadow" data-copy="+919334706652" title="Copy phone number">
+                  <i data-lucide="copy"></i>
+                </button>
+              </div>
+
+              <div class="contact-method-row">
+                <div class="cm-icon"><i data-lucide="linkedin"></i></div>
+                <div class="cm-details">
+                  <span class="cm-label">LINKEDIN PROFILE</span>
+                  <a href="https://www.linkedin.com/in/aryan-kumar-3562a1376" target="_blank" rel="noopener noreferrer" class="cm-value">linkedin.com/in/aryan-kumar-3562a1376</a>
+                </div>
+                <a href="https://www.linkedin.com/in/aryan-kumar-3562a1376" target="_blank" rel="noopener noreferrer" class="copy-btn hard-shadow" title="Open LinkedIn">
+                  <i data-lucide="external-link"></i>
+                </a>
+              </div>
+
+              <div class="contact-method-row">
+                <div class="cm-icon"><i data-lucide="github"></i></div>
+                <div class="cm-details">
+                  <span class="cm-label">GITHUB REPOSITORIES</span>
+                  <a href="https://github.com/aryacreations" target="_blank" rel="noopener noreferrer" class="cm-value">github.com/aryacreations</a>
+                </div>
+                <a href="https://github.com/aryacreations" target="_blank" rel="noopener noreferrer" class="copy-btn hard-shadow" title="Open GitHub">
+                  <i data-lucide="external-link"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Download Button -->
+            <div class="cta-actions-row">
+              <a class="btn btn-primary hard-shadow" href="mailto:aryanrajput.dev@gmail.com?subject=Opportunity%20Discussion%20with%20Aryan%20Kumar">
+                <i data-lucide="send"></i>
+                <span>Send Quick Email</span>
+              </a>
+              <a class="btn btn-outline-dark hard-shadow" href="assets/Aryan_Kumar_Resume.pdf" target="_blank" download="Aryan_Kumar_Resume.pdf">
+                <i data-lucide="file-down"></i>
+                <span>Download Resume (PDF)</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Vertical Process Steps & Interactive Terminal (§8) -->
+          <div class="cta-right">
+            <!-- Step List (§8) -->
+            <div class="steps-process-panel hard-shadow">
+              <div class="subheading-accent">COLLABORATION WORKFLOW</div>
+              <div class="step-item">
+                <div class="step-num-box">01</div>
+                <div class="step-content">
+                  <h4 class="step-title">REQUIREMENTS & ARCHITECTURE</h4>
+                  <p class="step-desc">Analyze problem constraints, select the optimal stack (FastAPI vs Node, RAG vs fine-tuning), and define data models.</p>
+                </div>
+              </div>
+              <div class="step-connector"></div>
+              <div class="step-item">
+                <div class="step-num-box">02</div>
+                <div class="step-content">
+                  <h4 class="step-title">ITERATIVE BUILD & BENCHMARKING</h4>
+                  <p class="step-desc">Rapid development with Docker containers, automated tests, low-latency signaling, and clean code principles.</p>
+                </div>
+              </div>
+              <div class="step-connector dashed"></div>
+              <div class="step-item">
+                <div class="step-num-box">03</div>
+                <div class="step-content">
+                  <h4 class="step-title">DEPLOYMENT & SCALE</h4>
+                  <p class="step-desc">Deploy to production with monitoring, CI/CD pipeline automation, and documentation ready for team handoff.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Neubrutalist Developer Terminal -->
+            <div class="retro-terminal-box hard-shadow">
+              <div class="terminal-topbar">
+                <div class="terminal-dots">
+                  <span class="tdot dot-red"></span>
+                  <span class="tdot dot-yellow"></span>
+                  <span class="tdot dot-green"></span>
+                </div>
+                <div class="terminal-title">aryan@workstation: ~/portfolio</div>
+                <div class="terminal-status">bash 5.2</div>
+              </div>
+              <div class="terminal-body" id="terminalOutput">
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">whoami</span></div>
+                <div class="t-line t-response">Aryan Kumar — Full-Stack & AI Agent Developer</div>
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cat skills.json | jq '.focus'</span></div>
+                <div class="t-line t-response">[ "LangChain", "CrewAI", "RAG", "FastAPI", "MERN Stack", "WebRTC" ]</div>
+                <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">curl -s api.aryan.dev/status</span></div>
+                <div class="t-line t-response t-highlight">{"status": "READY_TO_HIRE", "location": "India", "response_time": "< 24h"}</div>
+                <div class="t-line terminal-input-line">
+                  <span class="t-prompt">$</span>
+                  <span class="terminal-cursor-blink">_</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER (§14 Dark Background) -->
+  <footer class="footer section-dark" id="mainFooter">
+    <div class="container footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="logo" href="#hero">
+            <span class="logo-text">ARYAN</span><span class="chip">2026</span>
+          </a>
+          <p class="footer-tagline">
+            Full-Stack Developer & AI Agent Engineer building practical, resilient software systems.
+          </p>
+        </div>
+
+        <div class="footer-nav-group">
+          <span class="footer-group-title">NAVIGATION</span>
+          <a href="#about" class="footer-link">About Aryan</a>
+          <a href="#skills" class="footer-link">Technical Stack</a>
+          <a href="#projects" class="footer-link">Projects Showcase</a>
+          <a href="#experience" class="footer-link">Experience</a>
+          <a href="#education" class="footer-link">Certifications</a>
+        </div>
+
+        <div class="footer-nav-group">
+          <span class="footer-group-title">CONNECT</span>
+          <a href="https://github.com/aryacreations" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub / aryacreations</a>
+          <a href="https://www.linkedin.com/in/aryan-kumar-3562a1376" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn Profile</a>
+          <a href="mailto:aryanrajput.dev@gmail.com" class="footer-link">aryanrajput.dev@gmail.com</a>
+          <a href="tel:+919334706652" class="footer-link">+91-9334706652</a>
+        </div>
+
+        <div class="footer-nav-group">
+          <span class="footer-group-title">DOWNLOADS</span>
+          <a href="assets/Aryan_Kumar_Resume.pdf" target="_blank" download class="footer-link"><i data-lucide="file-text"></i> Aryan_Kumar_Resume.pdf</a>
+          <span class="footer-subtext">Updated for Q4 2026 / 2027 Roles</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="copyright">
+          © 2026 Aryan Kumar. Designed with Retro-Brutalist Architecture & Built with GSAP + Lenis.
+        </div>
+        <div class="footer-socials">
+          <a href="https://github.com/aryacreations" target="_blank" rel="noopener noreferrer" class="footer-soc-link" aria-label="GitHub"><i data-lucide="github"></i></a>
+          <a href="https://www.linkedin.com/in/aryan-kumar-3562a1376" target="_blank" rel="noopener noreferrer" class="footer-soc-link" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+          <a href="mailto:aryanrajput.dev@gmail.com" class="footer-soc-link" aria-label="Email"><i data-lucide="mail"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PROJECT ARCHITECTURE MODAL -->
+  <div class="project-modal" id="projectModal" aria-hidden="true" role="dialog">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-dialog hard-shadow-lg">
+      <div class="modal-header">
+        <div class="modal-badge-row">
+          <span class="modal-chip" id="modalChip">AI SPECIFICATION</span>
+          <span class="modal-time" id="modalTime">2026</span>
+        </div>
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-notification hard-shadow" id="toastNotice">
+    <i data-lucide="check-circle" class="toast-icon"></i>
+    <span id="toastMsg">Copied to clipboard!</span>
+  </div>
+
+  <!-- Portfolio Data Store & Sync Engine -->
+  <script src="data.js"></script>
+
+  <!-- Main JavaScript File -->
+  <script src="main.js"></script>
+</body>
+</html>

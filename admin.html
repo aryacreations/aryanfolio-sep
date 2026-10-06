@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Admin Studio · Aryan Kumar</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Data Synchronization Engine -->
+  <script src="data.js"></script>
+
+  <!-- Admin Stylesheet -->
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- ADMIN TOPBAR -->
+  <header class="admin-topbar">
+    <div class="topbar-left">
+      <a href="admin.html" class="admin-logo">
+        <span>ARYAN</span><span class="admin-chip">ADMIN</span>
+      </a>
+      <div class="sync-status-indicator" id="syncStatus">
+        <span class="status-dot"></span>
+        <span>LIVE SYNC ACTIVE</span>
+      </div>
+    </div>
+
+    <div class="topbar-actions">
+      <a href="index.html" target="_blank" class="btn-adm btn-adm-outline" title="Open portfolio website">
+        <i data-lucide="external-link"></i>
+        <span>View Live Site</span>
+      </a>
+      <button class="btn-adm btn-adm-gold" id="exportBtn" title="Export current data as JSON">
+        <i data-lucide="download"></i>
+        <span>Export JSON</span>
+      </button>
+      <button class="btn-adm btn-adm-primary" id="saveAllBtn">
+        <i data-lucide="save"></i>
+        <span>Save & Publish</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ADMIN WORKSPACE -->
+  <div class="admin-layout">
+    
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-heading">// CONTENT SECTIONS</div>
+      <nav class="nav-tab-list">
+        <button class="nav-tab-btn active" data-tab="tab-hero">
+          <i data-lucide="user"></i>
+          <span>Hero & Profile</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-metrics">
+          <i data-lucide="bar-chart-2"></i>
+          <span>Key Metrics (Stats)</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-about">
+          <i data-lucide="file-text"></i>
+          <span>About & Story</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-skills">
+          <i data-lucide="cpu"></i>
+          <span>Skills & Arsenal</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-projects">
+          <i data-lucide="folder-git-2"></i>
+          <span>All Projects (CRUD)</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-experience">
+          <i data-lucide="briefcase"></i>
+          <span>Experience & Clubs</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-education">
+          <i data-lucide="graduation-cap"></i>
+          <span>Education & Certs</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-contact">
+          <i data-lucide="send"></i>
+          <span>Contact & Socials</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-backup">
+          <i data-lucide="database"></i>
+          <span>Backup & Reset</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn-adm btn-adm-outline btn-adm-sm w-full" id="importJsonTrigger">
+          <i data-lucide="upload"></i> Import JSON
+        </button>
+        <input type="file" id="jsonFileInput" accept=".json" style="display: none;">
+        <button class="btn-adm btn-adm-danger btn-adm-sm w-full" id="resetDefaultBtn">
+          <i data-lucide="rotate-ccw"></i> Reset Defaults
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="admin-content">
+
+      <!-- ===================================================================
+           TAB 1: HERO & PROFILE
+           =================================================================== -->
+      <section class="tab-pane active" id="tab-hero">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">Hero Section & Core Identity</h1>
+            <p class="pane-desc">Update headlines, photo, role tags, and status indicator displayed at the very top of your site.</p>
+          </div>
+          <button class="btn-adm btn-adm-primary btn-adm-sm save-tab-btn">Save Tab</button>
+        </div>
+
+        <div class="admin-card">
+          <h2 class="admin-card-title"><i data-lucide="camera"></i> Profile Image & Avatar</h2>
+          <p class="admin-card-desc">Your portrait photo is displayed inside the retro-brutalist polaroid hero card.</p>
+          
+          <div class="avatar-preview-row">
+            <div class="avatar-preview-box">
+              <img id="avatarPreviewImg" src="assets/aryan.jpg" alt="Preview">
+            </div>
+            <div>
+              <div class="form-group" style="margin-bottom: 8px;">
+                <label>Photo URL / Local Path</label>
+                <input type="text" id="profileAvatarUrl" placeholder="assets/aryan.jpg">
+              </div>
+              <label class="btn-adm btn-adm-outline btn-adm-sm" style="display: inline-flex; cursor: pointer;">
+                <i data-lucide="upload"></i> Upload New Photo
+                <input type="file" id="avatarFileInput" accept="image/*" style="display: none;">
+              </label>
+              <p class="form-helper" style="margin-top: 6px;">Uploading converts image to instant Base64 storage, reflecting immediately on main page.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h2 class="admin-card-title"><i data-lucide="type"></i> Headlines & Taglines</h2>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Full Name (Title Line 1)</label>
+              <input type="text" id="profileName" placeholder="Aryan Kumar">
+            </div>
+            <div class="form-group">
+              <label>Eyebrow Label (Monospace)</label>
+              <input type="text" id="profileEyebrow" placeholder="FULL-STACK DEVELOPER · AI AGENT ENGINEER">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Campaign Tagline (Title Line 2 - Accent Blue)</label>
+            <input type="text" id="profileTaglineLine2" placeholder="Building Agentic AI & High-Throughput Web Platforms">
+          </div>
+          <div class="form-group">
+            <label>Hero Bio / Supporting Paragraph</label>
+            <textarea id="profileBio" rows="3" placeholder="Passionate software engineer crafting full-stack web applications..."></textarea>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h2 class="admin-card-title"><i data-lucide="tag"></i> Badges, Captions & Resume</h2>
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label>Status Badge Text</label>
+              <input type="text" id="profileStatusBadge" placeholder="AVAILABLE FOR ROLES · 2026">
+            </div>
+            <div class="form-group">
+              <label>Polaroid Role Caption</label>
+              <input type="text" id="profileRoleCaption" placeholder="MERN · FastAPI · LangChain · RAG">
+            </div>
+            <div class="form-group">
+              <label>Education Chip</label>
+              <input type="text" id="profileEduBrief" placeholder="B.Tech CS '27 (CGPA 7.8)">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Resume Download URL / PDF Path</label>
+            <input type="text" id="profileResumeUrl" placeholder="assets/Aryan_Kumar_Resume.pdf">
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 2: KEY METRICS
+           =================================================================== -->
+      <section class="tab-pane" id="tab-metrics">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">Key Metrics (Hero Trust Bar)</h1>
+            <p class="pane-desc">The 4 high-impact numerical stats prominently featured below your hero action buttons.</p>
+          </div>
+          <button class="btn-adm btn-adm-primary btn-adm-sm save-tab-btn">Save Tab</button>
+        </div>
+
+        <div class="admin-card">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Metric 1: Big Number</label>
+              <input type="text" id="m0_num" placeholder="500+">
+              <label style="margin-top: 8px;">Metric 1: Label</label>
+              <input type="text" id="m0_lbl" placeholder="Extension Downloads">
+            </div>
+            <div class="form-group">
+              <label>Metric 2: Big Number</label>
+              <input type="text" id="m1_num" placeholder="<150ms">
+              <label style="margin-top: 8px;">Metric 2: Label</label>
+              <input type="text" id="m1_lbl" placeholder="RAG Latency (5k+ Docs)">
+            </div>
+          </div>
+          <div class="form-grid-2" style="margin-top: 14px;">
+            <div class="form-group">
+              <label>Metric 3: Big Number</label>
+              <input type="text" id="m2_num" placeholder="300+">
+              <label style="margin-top: 8px;">Metric 3: Label</label>
+              <input type="text" id="m2_lbl" placeholder="Orders / Day Handled">
+            </div>
+            <div class="form-group">
+              <label>Metric 4: Big Number</label>
+              <input type="text" id="m3_num" placeholder="20+">
+              <label style="margin-top: 8px;">Metric 4: Label</label>
+              <input type="text" id="m3_lbl" placeholder="GitHub Repositories">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 3: ABOUT & STORY
+           =================================================================== -->
+      <section class="tab-pane" id="tab-about">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">About Me & Philosophy</h1>
+            <p class="pane-desc">Narrative, engineering core values, and background facts.</p>
+          </div>
+          <button class="btn-adm btn-adm-primary btn-adm-sm save-tab-btn">Save Tab</button>
+        </div>
+
+        <div class="admin-card">
+          <h2 class="admin-card-title"><i data-lucide="book-open"></i> Story & Vision Copy</h2>
+          <div class="form-group">
+            <label>Section Heading</label>
+            <input type="text" id="aboutTitle" placeholder="ENGINEERING SOFTWARE THAT SOLVES REAL-WORLD PROBLEMS">
+          </div>
+          <div class="form-group">
+            <label>Lead In Paragraph</label>
+            <textarea id="aboutLead" rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Detailed Biography Paragraph</label>
+            <textarea id="aboutParagraph" rows="4"></textarea>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h2 class="admin-card-title"><i data-lucide="compass"></i> Quick Facts Box</h2>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Location</label>
+              <input type="text" id="factLocation">
+            </div>
+            <div class="form-group">
+              <label>Degree & Graduation Year</label>
+              <input type="text" id="factDegree">
+            </div>
+            <div class="form-group">
+              <label>CGPA</label>
+              <input type="text" id="factCgpa">
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="text" id="factPhone">
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h2 class="admin-card-title"><i data-lucide="check-square"></i> Core Engineering Principles (4 Items)</h2>
+          <div id="principlesContainer">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 4: SKILLS & ARSENAL
+           =================================================================== -->
+      <section class="tab-pane" id="tab-skills">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">Technical Arsenal & Skills</h1>
+            <p class="pane-desc">Manage domain categories, core highlights, and individual skill tags.</p>
+          </div>
+          <button class="btn-adm btn-adm-primary btn-adm-sm save-tab-btn">Save Tab</button>
+        </div>
+
+        <div id="skillsAdminContainer">
+          <!-- Injected via JS -->
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 5: ALL PROJECTS (CRUD)
+           =================================================================== -->
+      <section class="tab-pane" id="tab-projects">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">Projects Showcase Manager</h1>
+            <p class="pane-desc">Add, edit, delete, or mark flagship projects. Every project appears dynamically in index.html with filters.</p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-adm btn-adm-gold btn-adm-sm" id="addNewProjectBtn">
+              <i data-lucide="plus-circle"></i> Add New Project
+            </button>
+            <button class="btn-adm btn-adm-primary btn-adm-sm save-tab-btn">Save All</button>
+          </div>
+        </div>
+
+        <div class="item-card-list" id="projectsListContainer">
+          <!-- Injected via JS -->
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 6: EXPERIENCE & CLUBS
+           =================================================================== -->
+      <section class="tab-pane" id="tab-experience">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">Work Experience & Leadership</h1>
+            <p class="pane-desc">Freelance engagements, client projects, and student community leadership roles.</p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-adm btn-adm-gold btn-adm-sm" id="addNewExpBtn">
+              <i data-lucide="plus-circle"></i> Add New Experience
+            </button>
+            <button class="btn-adm btn-adm-primary btn-adm-sm save-tab-btn">Save All</button>
+          </div>
+        </div>
+
+        <div class="item-card-list" id="experienceListContainer" style="margin-bottom: 32px;">
+          <!-- Injected via JS -->
+        </div>
+
+        <div class="admin-card">
+          <h2 class="admin-card-title"><i data-lucide="users"></i> Leadership & Community Club Banner</h2>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Leadership Title</label>
+              <input type="text" id="leadTitle">
+            </div>
+            <div class="form-group">
+              <label>Organization / University</label>
+              <input type="text" id="leadOrg">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Community Description</label>
+            <textarea id="leadDesc" rows="3"></textarea>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Stat 1 (e.g. 50+ Students)</label>
+              <input type="text" id="leadStat1">
+            </div>
+            <div class="form-group">
+              <label>Stat 2 (e.g. 10+ Sprints)</label>
+              <input type="text" id="leadStat2">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 7: EDUCATION & CERTS
+           =================================================================== -->
+      <section class="tab-pane" id="tab-education">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">Education & Certifications</h1>
+            <p class="pane-desc">Academic foundation, CGPA, coursework, and industry certifications.</p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-adm btn-adm-gold btn-adm-sm" id="addNewCertBtn">
+              <i data-lucide="plus-circle"></i> Add Certification
+            </button>
+            <button class="btn-adm btn-adm-primary btn-adm-sm save-tab-btn">Save All</button>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h2 class="admin-card-title"><i data-lucide="award"></i> Certifications List</h2>
+          <div class="item-card-list" id="certsListContainer">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h2 class="admin-card-title"><i data-lucide="graduation-cap"></i> Formal Education Details</h2>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Degree Title</label>
+              <input type="text" id="eduDegree">
+            </div>
+            <div class="form-group">
+              <label>University / College</label>
+              <input type="text" id="eduUni">
+            </div>
+          </div>
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label>CGPA</label>
+              <input type="text" id="eduCgpa">
+            </div>
+            <div class="form-group">
+              <label>Year Tag</label>
+              <input type="text" id="eduYear">
+            </div>
+            <div class="form-group">
+              <label>Location</label>
+              <input type="text" id="eduLoc">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Core Coursework (Comma Separated)</label>
+            <input type="text" id="eduCoursework" placeholder="DBMS, Operating Systems, Computer Networks, Python...">
+          </div>
+          <div class="form-group">
+            <label>Academic Philosophy Quote</label>
+            <textarea id="eduQuote" rows="2"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 8: CONTACT & SOCIALS
+           =================================================================== -->
+      <section class="tab-pane" id="tab-contact">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">Contact Channels & Social Links</h1>
+            <p class="pane-desc">Direct email, telephone, LinkedIn, GitHub, and terminal information.</p>
+          </div>
+          <button class="btn-adm btn-adm-primary btn-adm-sm save-tab-btn">Save Tab</button>
+        </div>
+
+        <div class="admin-card">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Primary Email</label>
+              <input type="email" id="contactEmail" placeholder="aryanrajput.dev@gmail.com">
+            </div>
+            <div class="form-group">
+              <label>Phone / WhatsApp</label>
+              <input type="text" id="contactPhone" placeholder="+91-9334706652">
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>LinkedIn Full URL</label>
+              <input type="url" id="contactLinkedIn">
+            </div>
+            <div class="form-group">
+              <label>GitHub Full URL</label>
+              <input type="url" id="contactGitHub">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           TAB 9: BACKUP & RESET
+           =================================================================== -->
+      <section class="tab-pane" id="tab-backup">
+        <div class="pane-header">
+          <div>
+            <h1 class="pane-title">Data Backup, Export & Restore</h1>
+            <p class="pane-desc">Safely download full backups of your portfolio, import past versions, or restore original state.</p>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h2 class="admin-card-title"><i data-lucide="download-cloud"></i> Export JSON Data</h2>
+          <p class="admin-card-desc">Download a complete snapshot of your portfolio data as a JSON file to your computer.</p>
+          <button class="btn-adm btn-adm-gold" id="exportBackupBtn">
+            <i data-lucide="file-json"></i> Download portfolio-backup.json
+          </button>
+        </div>
+
+        <div class="admin-card">
+          <h2 class="admin-card-title"><i data-lucide="upload-cloud"></i> Import JSON Data</h2>
+          <p class="admin-card-desc">Upload a previously exported JSON backup to replace the current live portfolio data.</p>
+          <label class="btn-adm btn-adm-outline" style="cursor: pointer; display: inline-flex;">
+            <i data-lucide="file-up"></i> Select JSON File to Restore
+            <input type="file" id="importBackupInput" accept=".json" style="display: none;">
+          </label>
+        </div>
+
+        <div class="admin-card" style="border-color: var(--color-accent-red);">
+          <h2 class="admin-card-title" style="color: var(--color-accent-red);"><i data-lucide="alert-triangle"></i> Factory Reset to Original Resume</h2>
+          <p class="admin-card-desc">This will erase all custom edits in localStorage and revert index.html back to the initial resume data.</p>
+          <button class="btn-adm btn-adm-danger" id="dangerResetBtn">
+            <i data-lucide="trash-2"></i> Wipe & Reset to Defaults
+          </button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FLOATING SAVE BAR -->
+  <div class="floating-save-bar" id="floatingSaveBar">
+    <span class="save-prompt-text">You have unsaved changes or edits ready to publish.</span>
+    <button class="btn-adm btn-adm-primary btn-adm-sm" id="floatingSaveBtn">
+      <i data-lucide="check"></i> Save & Publish Now
+    </button>
+  </div>
+
+  <!-- MODAL: PROJECT EDITOR (ADD / EDIT) -->
+  <div class="admin-modal" id="projectEditorModal">
+    <div class="admin-modal-backdrop" id="projectModalBackdrop"></div>
+    <div class="admin-modal-dialog">
+      <div class="admin-modal-header">
+        <h2 class="admin-modal-title" id="projectModalHeading">Edit Project</h2>
+        <span class="admin-modal-close" id="closeProjectModalBtn">&times;</span>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="editProjIndex" value="-1">
+        
+        <div class="form-group">
+          <label>Project Title</label>
+          <input type="text" id="editProjTitle" placeholder="Autonomous Agentic RAG Platform">
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Category Filter</label>
+            <select id="editProjCategory">
+              <option value="ai-agents">AI & Agents</option>
+              <option value="fullstack">Full-Stack & MERN</option>
+              <option value="realtime">Real-Time & WebRTC</option>
+              <option value="python-tools">Python & Backend</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Year</label>
+            <input type="text" id="editProjYear" placeholder="2026">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Badge Text</label>
+            <input type="text" id="editProjBadge" placeholder="★ FLAGSHIP AI PROJECT">
+          </div>
+          <div class="form-group">
+            <label>Is Flagship / Featured Card?</label>
+            <select id="editProjFeatured">
+              <option value="true">Yes (Wide Highlight Card)</option>
+              <option value="false">No (Standard Card)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>One-Line Tagline / Summary</label>
+          <input type="text" id="editProjTagline" placeholder="Multi-agent competitive research & patent intelligence system...">
+        </div>
+
+        <div class="form-group">
+          <label>Stats Pills (Format: Strong1: Label1 | Strong2: Label2 | Strong3: Label3)</label>
+          <input type="text" id="editProjStats" placeholder="-85%: Manual Time | <150ms: Latency | +30%: Accuracy">
+        </div>
+
+        <div class="form-group">
+          <label>Bullet Points / Achievements (One per line)</label>
+          <textarea id="editProjBullets" rows="4" placeholder="Built a multi-agent autonomous research platform...&#10;Implemented dense vector semantic search..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Tech Tags (Comma Separated)</label>
+          <input type="text" id="editProjTags" placeholder="CrewAI, LangChain, Ollama, DeepSeek R1, SerpAPI, OpenSearch">
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>GitHub Repository URL</label>
+            <input type="url" id="editProjGithub" placeholder="https://github.com/aryacreations/...">
+          </div>
+          <div class="form-group">
+            <label>Has Architecture Modal Specs?</label>
+            <select id="editProjHasDetails">
+              <option value="true">Yes (Show Specs Button)</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button class="btn-adm btn-adm-outline" id="cancelProjectModalBtn">Cancel</button>
+        <button class="btn-adm btn-adm-primary" id="saveProjectItemBtn">Save Project</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="admin-toast" id="adminToast">
+    <span>Changes saved & synchronized!</span>
+  </div>
+
+  <!-- Admin Interactive Script -->
+  <script src="admin.js"></script>
+</body>
+</html>
