@@ -31,6 +31,14 @@
         <span class="status-dot"></span>
         <span>LIVE SYNC ACTIVE</span>
       </div>
+      <div class="sync-status-indicator" id="mongoStatusBadge" style="background: rgba(16, 185, 129, 0.15); border-color: #10b981; color: #34d399;">
+        <span class="status-dot" style="background: #10b981;"></span>
+        <span>MONGODB ATLAS</span>
+      </div>
+      <div class="sync-status-indicator" style="background: rgba(34, 197, 94, 0.15); border-color: #22c55e; color: #4ade80;">
+        <span class="status-dot" style="background: #22c55e;"></span>
+        <span>CLOUDINARY CDN</span>
+      </div>
     </div>
 
     <div class="topbar-actions">
@@ -121,23 +129,31 @@
         </div>
 
         <div class="admin-card">
-          <h2 class="admin-card-title"><i data-lucide="camera"></i> Profile Image & Avatar</h2>
-          <p class="admin-card-desc">Your portrait photo is displayed inside the retro-brutalist polaroid hero card.</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <h2 class="admin-card-title" style="margin-bottom: 0;"><i data-lucide="camera"></i> Profile Image & Avatar</h2>
+            <span class="admin-chip" style="background: #22c55e; color: #fff; border-color: #000; font-weight: 700;">
+              <i data-lucide="cloud" style="width: 12px; height: 12px; display: inline-block; vertical-align: middle;"></i> CLOUDINARY CONNECTED (su1rtayw)
+            </span>
+          </div>
+          <p class="admin-card-desc">Your portrait photo is hosted on Cloudinary CDN and displayed inside the retro-brutalist polaroid hero card.</p>
           
           <div class="avatar-preview-row">
             <div class="avatar-preview-box">
-              <img id="avatarPreviewImg" src="assets/aryan.jpg" alt="Preview">
+              <img id="avatarPreviewImg" src="https://res.cloudinary.com/su1rtayw/image/upload/v1791280125/gtercet5mc8m4ri7nzkt.jpg" alt="Preview">
             </div>
-            <div>
+            <div style="flex: 1;">
               <div class="form-group" style="margin-bottom: 8px;">
-                <label>Photo URL / Local Path</label>
-                <input type="text" id="profileAvatarUrl" placeholder="assets/aryan.jpg">
+                <label>Cloudinary CDN Image URL</label>
+                <input type="text" id="profileAvatarUrl" placeholder="https://res.cloudinary.com/su1rtayw/image/upload/v1791280125/gtercet5mc8m4ri7nzkt.jpg">
               </div>
-              <label class="btn-adm btn-adm-outline btn-adm-sm" style="display: inline-flex; cursor: pointer;">
-                <i data-lucide="upload"></i> Upload New Photo
-                <input type="file" id="avatarFileInput" accept="image/*" style="display: none;">
-              </label>
-              <p class="form-helper" style="margin-top: 6px;">Uploading converts image to instant Base64 storage, reflecting immediately on main page.</p>
+              <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <label class="btn-adm btn-adm-primary btn-adm-sm" id="uploadPhotoBtnLabel" style="display: inline-flex; cursor: pointer;">
+                  <i data-lucide="upload-cloud"></i> Upload New Photo to Cloudinary
+                  <input type="file" id="avatarFileInput" accept="image/*" style="display: none;">
+                </label>
+                <span id="cloudinaryUploadStatus" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--admin-ink-muted);"></span>
+              </div>
+              <p class="form-helper" style="margin-top: 6px;">Any selected photo uploads directly to your Cloudinary cloud (<strong>su1rtayw</strong>) and immediately updates live.</p>
             </div>
           </div>
         </div>
@@ -182,7 +198,7 @@
           </div>
           <div class="form-group">
             <label>Resume Download URL / PDF Path</label>
-            <input type="text" id="profileResumeUrl" placeholder="assets/Aryan_Kumar_Resume.pdf">
+            <input type="text" id="profileResumeUrl" placeholder="assets/Aryan_resw.pdf">
           </div>
         </div>
       </section>
@@ -194,40 +210,18 @@
         <div class="pane-header">
           <div>
             <h1 class="pane-title">Key Metrics (Hero Trust Bar)</h1>
-            <p class="pane-desc">The 4 high-impact numerical stats prominently featured below your hero action buttons.</p>
+            <p class="pane-desc">The high-impact numerical stats prominently featured below your hero action buttons. Add, edit, or delete any metric.</p>
           </div>
-          <button class="btn-adm btn-adm-primary btn-adm-sm save-tab-btn">Save Tab</button>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-adm btn-adm-gold btn-adm-sm" id="addNewMetricBtn">
+              <i data-lucide="plus-circle"></i> Add Metric
+            </button>
+            <button class="btn-adm btn-adm-primary btn-adm-sm save-tab-btn">Save Tab</button>
+          </div>
         </div>
 
-        <div class="admin-card">
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label>Metric 1: Big Number</label>
-              <input type="text" id="m0_num" placeholder="500+">
-              <label style="margin-top: 8px;">Metric 1: Label</label>
-              <input type="text" id="m0_lbl" placeholder="Extension Downloads">
-            </div>
-            <div class="form-group">
-              <label>Metric 2: Big Number</label>
-              <input type="text" id="m1_num" placeholder="<150ms">
-              <label style="margin-top: 8px;">Metric 2: Label</label>
-              <input type="text" id="m1_lbl" placeholder="RAG Latency (5k+ Docs)">
-            </div>
-          </div>
-          <div class="form-grid-2" style="margin-top: 14px;">
-            <div class="form-group">
-              <label>Metric 3: Big Number</label>
-              <input type="text" id="m2_num" placeholder="300+">
-              <label style="margin-top: 8px;">Metric 3: Label</label>
-              <input type="text" id="m2_lbl" placeholder="Orders / Day Handled">
-            </div>
-            <div class="form-group">
-              <label>Metric 4: Big Number</label>
-              <input type="text" id="m3_num" placeholder="20+">
-              <label style="margin-top: 8px;">Metric 4: Label</label>
-              <input type="text" id="m3_lbl" placeholder="GitHub Repositories">
-            </div>
-          </div>
+        <div class="item-card-list" id="metricsListContainer">
+          <!-- Injected via JS with live edit and delete buttons -->
         </div>
       </section>
 
@@ -282,9 +276,14 @@
         </div>
 
         <div class="admin-card">
-          <h2 class="admin-card-title"><i data-lucide="check-square"></i> Core Engineering Principles (4 Items)</h2>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h2 class="admin-card-title" style="margin-bottom: 0;"><i data-lucide="check-square"></i> Core Engineering Principles</h2>
+            <button class="btn-adm btn-adm-gold btn-adm-sm" id="addNewPrincipleBtn">
+              <i data-lucide="plus-circle"></i> Add Principle
+            </button>
+          </div>
           <div id="principlesContainer">
-            <!-- Injected via JS -->
+            <!-- Injected via JS with live delete & edit -->
           </div>
         </div>
       </section>
@@ -296,9 +295,14 @@
         <div class="pane-header">
           <div>
             <h1 class="pane-title">Technical Arsenal & Skills</h1>
-            <p class="pane-desc">Manage domain categories, core highlights, and individual skill tags.</p>
+            <p class="pane-desc">Manage domain categories, core highlights, and individual skill tags. Add new domains, edit or delete existing ones.</p>
           </div>
-          <button class="btn-adm btn-adm-primary btn-adm-sm save-tab-btn">Save Tab</button>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-adm btn-adm-gold btn-adm-sm" id="addNewSkillBtn">
+              <i data-lucide="plus-circle"></i> Add Skill Category
+            </button>
+            <button class="btn-adm btn-adm-primary btn-adm-sm save-tab-btn">Save All</button>
+          </div>
         </div>
 
         <div id="skillsAdminContainer">
@@ -606,6 +610,161 @@
       <div class="admin-modal-footer">
         <button class="btn-adm btn-adm-outline" id="cancelProjectModalBtn">Cancel</button>
         <button class="btn-adm btn-adm-primary" id="saveProjectItemBtn">Save Project</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: SKILL CATEGORY EDITOR (ADD / EDIT) -->
+  <div class="admin-modal" id="skillEditorModal">
+    <div class="admin-modal-backdrop" id="skillModalBackdrop"></div>
+    <div class="admin-modal-dialog">
+      <div class="admin-modal-header">
+        <h2 class="admin-modal-title" id="skillModalHeading">Edit Skill Category</h2>
+        <span class="admin-modal-close" id="closeSkillModalBtn">&times;</span>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="editSkillIndex" value="-1">
+        
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Domain Title</label>
+            <input type="text" id="editSkillTitle" placeholder="AI & Agentic Systems">
+          </div>
+          <div class="form-group">
+            <label>Card Chip / Badge</label>
+            <input type="text" id="editSkillChip" placeholder="CORE FOCUS">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Featured Gold Card?</label>
+            <select id="editSkillGold">
+              <option value="true">Yes (Gold Highlight Card)</option>
+              <option value="false">No (Standard Dark Card)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Lucide Icon Name</label>
+            <input type="text" id="editSkillIcon" placeholder="bot, layers, radio, database, workflow, scan-face">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Summary Description</label>
+          <input type="text" id="editSkillSummary" placeholder="Autonomous agents, context-aware RAG pipelines, and LLM integrations.">
+        </div>
+
+        <div class="form-group">
+          <label>Skill Tags (Comma-Separated)</label>
+          <textarea id="editSkillTags" rows="3" placeholder="CrewAI, LangChain, RAG Pipelines, Ollama, DeepSeek R1, SerpAPI, OpenSearch"></textarea>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button class="btn-adm btn-adm-outline" id="cancelSkillModalBtn">Cancel</button>
+        <button class="btn-adm btn-adm-primary" id="saveSkillItemBtn">Save Skill Category</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: WORK EXPERIENCE EDITOR (ADD / EDIT) -->
+  <div class="admin-modal" id="expEditorModal">
+    <div class="admin-modal-backdrop" id="expModalBackdrop"></div>
+    <div class="admin-modal-dialog">
+      <div class="admin-modal-header">
+        <h2 class="admin-modal-title" id="expModalHeading">Edit Work Experience</h2>
+        <span class="admin-modal-close" id="closeExpModalBtn">&times;</span>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="editExpIndex" value="-1">
+        
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Role / Position Title</label>
+            <input type="text" id="editExpRole" placeholder="Freelance Backend Developer">
+          </div>
+          <div class="form-group">
+            <label>Company / Organization</label>
+            <input type="text" id="editExpCompany" placeholder="Texserve Nexsus Pvt Ltd">
+          </div>
+        </div>
+
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label>Duration & Location</label>
+            <input type="text" id="editExpPeriod" placeholder="Dec 2025 – Jan 2026 | Remote">
+          </div>
+          <div class="form-group">
+            <label>Role Badge</label>
+            <input type="text" id="editExpBadge" placeholder="BACKEND ARCHITECTURE">
+          </div>
+          <div class="form-group">
+            <label>Featured Gold Card?</label>
+            <select id="editExpGold">
+              <option value="true">Yes (Gold Highlight)</option>
+              <option value="false">No (Standard Card)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Key Achievements & Bullet Points (One per line)</label>
+          <textarea id="editExpPoints" rows="4" placeholder="Developed a scalable e-commerce backend using FastAPI, MongoDB, and Docker...&#10;Implemented JWT authentication, shopping cart, and clean architecture..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Tech Tags (Comma-Separated)</label>
+          <input type="text" id="editExpTags" placeholder="FastAPI, MongoDB, Docker, JWT, Python">
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button class="btn-adm btn-adm-outline" id="cancelExpModalBtn">Cancel</button>
+        <button class="btn-adm btn-adm-primary" id="saveExpItemBtn">Save Experience</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CERTIFICATION EDITOR (ADD / EDIT) -->
+  <div class="admin-modal" id="certEditorModal">
+    <div class="admin-modal-backdrop" id="certModalBackdrop"></div>
+    <div class="admin-modal-dialog">
+      <div class="admin-modal-header">
+        <h2 class="admin-modal-title" id="certModalHeading">Edit Certification</h2>
+        <span class="admin-modal-close" id="closeCertModalBtn">&times;</span>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="editCertIndex" value="-1">
+        
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Certification Name</label>
+            <input type="text" id="editCertName" placeholder="Claude Code in Action">
+          </div>
+          <div class="form-group">
+            <label>Issuing Organization</label>
+            <input type="text" id="editCertIssuer" placeholder="Anthropic">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Badge / Skills Tag</label>
+            <input type="text" id="editCertBadge" placeholder="Anthropic · Subagents">
+          </div>
+          <div class="form-group">
+            <label>Lucide Icon Name</label>
+            <input type="text" id="editCertIcon" placeholder="award, terminal, code-2, database">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Brief Description</label>
+          <textarea id="editCertDesc" rows="3" placeholder="Mastery in Claude Code CLI, agentic orchestration, subagents, and automated developer tooling."></textarea>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button class="btn-adm btn-adm-outline" id="cancelCertModalBtn">Cancel</button>
+        <button class="btn-adm btn-adm-primary" id="saveCertItemBtn">Save Certification</button>
       </div>
     </div>
   </div>

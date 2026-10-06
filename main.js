@@ -102,6 +102,70 @@ document.addEventListener("DOMContentLoaded", () => {
     attachCursorHover();
   }
 
+  // 3.5. KINETIC SCROLL PROGRESS, SCALE & ROTATE ANIMATION ENGINE
+  const scrollProgressBar = document.getElementById("scrollProgressLine");
+  const heroPolaroid = document.querySelector(".hero-portrait-polaroid");
+  const floatingCards = document.querySelectorAll(".floating-tech-card");
+  const mainNav = document.getElementById("mainNav");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!prefersReducedMotion) {
+    let currentScale = 1;
+    let currentRotX = 0;
+    let currentRotY = 0;
+
+    function renderScrollKinetic() {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollY = window.scrollY || window.pageYOffset;
+      const progress = docHeight > 0 ? Math.min(Math.max(scrollY / docHeight, 0), 1) : 0;
+
+      // Update Top Progress Bar
+      if (scrollProgressBar) {
+        scrollProgressBar.style.width = `${(progress * 100).toFixed(2)}%`;
+      }
+
+      // Navbar elevation on scroll
+      if (mainNav) {
+        if (scrollY > 30) {
+          mainNav.classList.add("scrolled");
+        } else {
+          mainNav.classList.remove("scrolled");
+        }
+      }
+
+      // Hero 3D Perspective Scale & Rotate on Scroll
+      if (heroPolaroid && scrollY < window.innerHeight * 1.5) {
+        const heroProgress = Math.min(Math.max(scrollY / (window.innerHeight * 0.9), 0), 1);
+        
+        // Target values based on scroll progression
+        const targetScale = 1 - heroProgress * 0.08;
+        const targetRotX = heroProgress * 12;
+        const targetRotY = heroProgress * -8;
+
+        // Smooth Lerp (Linear Interpolation)
+        currentScale += (targetScale - currentScale) * 0.12;
+        currentRotX += (targetRotX - currentRotX) * 0.12;
+        currentRotY += (targetRotY - currentRotY) * 0.12;
+
+        heroPolaroid.style.transform = `perspective(1000px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) scale(${currentScale.toFixed(3)})`;
+      }
+
+      // Floating Tech Badges Kinetic Parallax
+      if (floatingCards.length > 0 && scrollY < window.innerHeight * 1.5) {
+        floatingCards.forEach((card, i) => {
+          const speed = (i + 1) * 0.05;
+          const offsetY = -scrollY * speed;
+          const rotZ = Math.sin((scrollY + i * 100) * 0.005) * 3;
+          card.style.transform = `translate3d(0, ${offsetY.toFixed(1)}px, 0) rotate(${rotZ.toFixed(1)}deg)`;
+        });
+      }
+
+      requestAnimationFrame(renderScrollKinetic);
+    }
+
+    requestAnimationFrame(renderScrollKinetic);
+  }
+
   // 4. GSAP TIMELINES & SCROLL REVEALS (§13)
   if (typeof gsap !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -184,54 +248,78 @@ document.addEventListener("DOMContentLoaded", () => {
     if (eduBadge && p.educationBrief) eduBadge.textContent = p.educationBrief;
 
     // Resumes
-    const cvBtns = document.querySelectorAll("#navResumeBtn, #heroCvBtn, .cta-actions-row a[download]");
+    const cvBtns = document.querySelectorAll("#navResumeBtn, #heroCvBtn, .cta-actions-row a[download], .drawer-footer a[download], .footer-link[download]");
     cvBtns.forEach((btn) => {
-      if (p.resumeUrl) btn.setAttribute("href", p.resumeUrl);
+      if (p.resumeUrl) {
+        btn.setAttribute("href", p.resumeUrl);
+        const fileName = p.resumeUrl.split("/").pop() || "Aryan_resw.pdf";
+        btn.setAttribute("download", fileName);
+      }
     });
 
-    // Metrics Bar
-    const trustItems = document.querySelectorAll(".trust-bar .trust-item");
-    if (data.metrics && trustItems.length >= 4) {
-      data.metrics.forEach((m, idx) => {
-        if (trustItems[idx]) {
-          trustItems[idx].querySelector(".trust-number").textContent = m.number;
-          trustItems[idx].querySelector(".trust-label").textContent = m.label;
-        }
-      });
+    // Metrics Bar (Dynamic)
+    try {
+      const trustBar = document.querySelector(".trust-bar");
+      if (trustBar && data.metrics && data.metrics.length > 0) {
+        trustBar.innerHTML = data.metrics
+          .map(
+            (m, idx) => `
+          <div class="trust-item">
+            <span class="trust-number">${escapeHtml(m.number)}</span>
+            <span class="trust-label">${escapeHtml(m.label)}</span>
+          </div>
+          ${idx < data.metrics.length - 1 ? '<div class="trust-divider"></div>' : ""}
+        `
+          )
+          .join("");
+      }
+    } catch (e) {
+      console.warn("Metrics hydration warning:", e);
     }
 
     // B. ABOUT SECTION
-    const ab = data.about || {};
-    const abHeading = document.querySelector("#about .section-heading");
-    if (abHeading && ab.title) {
-      abHeading.innerHTML = `ENGINEERING SOFTWARE THAT <span class="highlight-red">${escapeHtml(ab.title.replace("ENGINEERING SOFTWARE THAT", "").trim() || "SOLVES REAL PROBLEMS")}</span>`;
-    }
+    try {
+      const ab = data.about || {};
+      const abHeading = document.querySelector("#about .section-heading");
+      if (abHeading && ab.title) {
+        abHeading.innerHTML = `ENGINEERING SOFTWARE THAT <span class="highlight-red">${escapeHtml(ab.title.replace("ENGINEERING SOFTWARE THAT", "").trim() || "SOLVES REAL PROBLEMS")}</span>`;
+      }
 
-    const abLead = document.querySelector("#about .body-lead");
-    if (abLead && ab.lead) abLead.textContent = ab.lead;
+      const abLead = document.querySelector("#about .body-lead");
+      if (abLead && ab.lead) abLead.textContent = ab.lead;
 
-    const abText = document.querySelector("#about .body-text");
-    if (abText && ab.paragraph) abText.textContent = ab.paragraph;
+      const abText = document.querySelector("#about .body-text");
+      if (abText && ab.paragraph) abText.textContent = ab.paragraph;
 
-    // Quick Facts
-    const qf = ab.quickFacts || {};
-    const qfacts = document.querySelectorAll(".quick-facts-box .qfact .qvalue");
-    if (qfacts.length >= 4) {
-      if (qf.location) qfacts[0].textContent = qf.location;
-      if (qf.degree) qfacts[1].textContent = qf.degree;
-      if (qf.cgpa) qfacts[2].textContent = qf.cgpa;
-      if (qf.phone) qfacts[3].textContent = qf.phone;
-    }
+      // Quick Facts
+      const qf = ab.quickFacts || {};
+      const qfacts = document.querySelectorAll(".quick-facts-box .qfact .qvalue");
+      if (qfacts.length >= 4) {
+        if (qf.location) qfacts[0].textContent = qf.location;
+        if (qf.degree) qfacts[1].textContent = qf.degree;
+        if (qf.cgpa) qfacts[2].textContent = qf.cgpa;
+        if (qf.phone) qfacts[3].textContent = qf.phone;
+      }
 
-    // Principles
-    const featureRows = document.querySelectorAll(".feature-panel .feature-row");
-    if (ab.principles && featureRows.length > 0) {
-      ab.principles.forEach((pr, i) => {
-        if (featureRows[i]) {
-          featureRows[i].querySelector(".feature-title").textContent = pr.title;
-          featureRows[i].querySelector(".feature-desc").textContent = pr.desc;
-        }
-      });
+      // Principles (Dynamic)
+      const featurePanel = document.querySelector(".feature-panel");
+      if (featurePanel && ab.principles && ab.principles.length > 0) {
+        featurePanel.innerHTML = ab.principles
+          .map(
+            (pr) => `
+          <div class="feature-row">
+            <div class="feature-marker">${escapeHtml(pr.marker || "✦")}</div>
+            <div class="feature-body">
+              <h3 class="feature-title">${escapeHtml(pr.title)}</h3>
+              <p class="feature-desc">${escapeHtml(pr.desc)}</p>
+            </div>
+          </div>
+        `
+          )
+          .join("");
+      }
+    } catch (e) {
+      console.warn("About hydration warning:", e);
     }
 
     // C. SKILLS & ARSENAL
@@ -448,8 +536,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Initial Hydration
+  // Initial Hydration & Server Disk Sync
   hydratePortfolioFromData();
+  if (typeof syncWithServerData === "function") {
+    syncWithServerData().then(() => hydratePortfolioFromData());
+  }
 
   // Cross-Tab Real-Time Sync Listeners
   if (typeof BroadcastChannel !== "undefined") {
@@ -471,6 +562,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("portfolio:updated", () => {
     hydratePortfolioFromData();
+  });
+
+  // Re-hydrate on tab focus or visibility change
+  window.addEventListener("focus", () => {
+    hydratePortfolioFromData();
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) {
+      hydratePortfolioFromData();
+    }
+  });
+
+  // Background timestamp poller (ensures 100% reflection even if events were throttled)
+  let lastSeenSyncTime = Date.now();
+  setInterval(() => {
+    try {
+      const raw = localStorage.getItem("aryan_portfolio_data_v1");
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && parsed._lastUpdated && parsed._lastUpdated > lastSeenSyncTime) {
+          lastSeenSyncTime = parsed._lastUpdated;
+          hydratePortfolioFromData();
+        }
+      }
+    } catch (e) {}
+  }, 1000);
+
+  // Hidden Keyboard Shortcut for Admin Access: Ctrl + Shift + A
+  window.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === "A" || e.key === "a")) {
+      e.preventDefault();
+      window.open("admin.html", "_blank");
+    }
   });
 
   // 6. PROJECT FILTER FUNCTIONALITY

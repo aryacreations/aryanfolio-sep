@@ -5,22 +5,24 @@
  * 2. admin.html (Live content management panel)
  */
 
+const rootScope = typeof window !== "undefined" ? window : globalThis;
 const STORAGE_KEY = "aryan_portfolio_data_v1";
 const SYNC_CHANNEL = "portfolio_sync_channel";
 
-window.DEFAULT_PORTFOLIO_DATA = {
+rootScope.DEFAULT_PORTFOLIO_DATA = {
+  _lastUpdated: Date.now(),
   profile: {
     name: "Aryan Kumar",
     taglineLine1: "Aryan Kumar",
     taglineLine2: "Building Agentic AI & High-Throughput Web Platforms",
     eyebrow: "FULL-STACK DEVELOPER · AI AGENT ENGINEER · MERN & PYTHON",
     bio: "Passionate software engineer crafting full-stack web applications with MERN and production-grade AI Agentic systems using Python, LangChain, CrewAI, and RAG. Focused on low-latency backends, real-time WebSockets, WebRTC, and clean distributed architectures.",
-    avatar: "assets/aryan.jpg",
+    avatar: "https://res.cloudinary.com/su1rtayw/image/upload/v1791280125/gtercet5mc8m4ri7nzkt.jpg",
     statusBadge: "AVAILABLE FOR ROLES · 2026",
     roleCaption: "MERN · FastAPI · LangChain · RAG",
     location: "Bhilai, Chhattisgarh, India",
     educationBrief: "B.Tech CS '27 (CGPA 7.8)",
-    resumeUrl: "assets/Aryan_Kumar_Resume.pdf",
+    resumeUrl: "assets/Aryan_resw.pdf",
     phone: "+91-9334706652",
     email: "aryanrajput.dev@gmail.com",
     githubUrl: "https://github.com/aryacreations",
@@ -452,7 +454,6 @@ function getPortfolioData() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
-      // Merge with defaults to prevent missing keys on updates
       return deepMerge(window.DEFAULT_PORTFOLIO_DATA, parsed);
     }
   } catch (err) {
@@ -462,12 +463,25 @@ function getPortfolioData() {
 }
 
 /**
- * Save updated portfolio data to localStorage and notify all open tabs
+ * Save updated portfolio data to localStorage, server disk API, and broadcast
  */
 function savePortfolioData(data) {
   try {
+    data._lastUpdated = Date.now();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    
+    // Broadcast across open browser tabs
     notifySync();
+
+    // Persist to disk via backend API if server is running
+    try {
+      fetch("/api/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      }).catch(() => {});
+    } catch (e) {}
+
     return true;
   } catch (err) {
     console.error("Failed to save portfolio data to localStorage", err);
@@ -494,8 +508,27 @@ function notifySync() {
       bc.close();
     } catch (e) {}
   }
-  // Dispatch custom local window event as well
   window.dispatchEvent(new CustomEvent("portfolio:updated", { detail: { timestamp: Date.now() } }));
+}
+
+/**
+ * Check if server has saved data and sync locally
+ */
+async function syncWithServerData() {
+  try {
+    const res = await fetch("/api/data");
+    if (res.ok) {
+      const serverData = await res.json();
+      if (serverData && serverData.profile) {
+        const local = localStorage.getItem(STORAGE_KEY);
+        const localData = local ? JSON.parse(local) : null;
+        if (!localData || (serverData._lastUpdated && serverData._lastUpdated > (localData._lastUpdated || 0))) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(serverData));
+          notifySync();
+        }
+      }
+    }
+  } catch (e) {}
 }
 
 /**
@@ -518,4 +551,13 @@ function deepMerge(target, source) {
 
 function isObject(item) {
   return item && typeof item === "object" && !Array.isArray(item);
+}
+
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    DEFAULT_PORTFOLIO_DATA: rootScope.DEFAULT_PORTFOLIO_DATA,
+    getPortfolioData,
+    savePortfolioData,
+    resetPortfolioData
+  };
 }

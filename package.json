@@ -1,0 +1,24 @@
+{
+  "name": "aryanfolio-sep",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aryacreations/aryanfolio-sep.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aryacreations/aryanfolio-sep/issues"
+  },
+  "homepage": "https://github.com/aryacreations/aryanfolio-sep#readme",
+  "description": "",
+  "dependencies": {
+    "mongodb": "^7.7.0"
+  }
+}

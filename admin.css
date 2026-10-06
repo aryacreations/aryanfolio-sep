@@ -480,9 +480,11 @@ body {
   padding: 20px;
 }
 
-.admin-modal.open {
-  opacity: 1;
-  visibility: visible;
+.admin-modal.open,
+.admin-modal.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
 }
 
 .admin-modal-backdrop {
