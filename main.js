@@ -322,26 +322,77 @@ document.addEventListener("DOMContentLoaded", () => {
       console.warn("About hydration warning:", e);
     }
 
-    // C. SKILLS & ARSENAL
+    // C. SKILLS & ARSENAL (INTERACTIVE & RATINGS)
     const skillsContainer = document.querySelector("#skills .skills-domain-grid");
     if (skillsContainer && data.skills && data.skills.length > 0) {
       skillsContainer.innerHTML = data.skills
-        .map(
-          (sk) => `
-        <div class="skill-card ${sk.isGold ? "featured-gold-card" : ""} hard-shadow">
-          <div class="card-chip ${sk.isGold ? "chip-gold" : ""}">${escapeHtml(sk.chip || "STACK")}</div>
-          <div class="card-icon-header">
-            <i data-lucide="${sk.icon || "code"}"></i>
-            <h3>${escapeHtml(sk.title)}</h3>
+        .map((sk) => {
+          const prof = sk.proficiency || 95;
+          const level = sk.level || (prof >= 95 ? "MASTER" : prof >= 90 ? "EXPERT" : "ADVANCED");
+          const exp = sk.exp || "Production-Ready";
+          const rating = sk.rating || "4.9/5.0";
+
+          return `
+        <div class="skill-card ${sk.isGold ? "featured-gold-card" : ""} hard-shadow" data-skill-id="${sk.id || ""}">
+          <div class="skill-card-topbar">
+            <div class="card-chip ${sk.isGold ? "chip-gold" : ""}">${escapeHtml(sk.chip || "STACK")}</div>
+            <div class="skill-proficiency-badge" title="Verified Skill Level">
+              <span class="skill-level-text">${escapeHtml(level)}</span>
+              <span class="skill-percent">${prof}%</span>
+            </div>
           </div>
+
+          <div class="card-icon-header">
+            <div class="skill-icon-box">
+              <i data-lucide="${sk.icon || "code"}"></i>
+            </div>
+            <div class="skill-title-block">
+              <h3>${escapeHtml(sk.title)}</h3>
+              <div class="skill-exp-pill">
+                <i data-lucide="zap"></i>
+                <span>${escapeHtml(exp)} · ★ ${escapeHtml(rating)}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Animated Proficiency Neon Meter -->
+          <div class="skill-meter-wrap">
+            <div class="skill-meter-header">
+              <span class="meter-label">Proficiency Score</span>
+              <span class="meter-val">${prof}% Perfection</span>
+            </div>
+            <div class="skill-meter-track">
+              <div class="skill-meter-fill" style="width: ${prof}%;"></div>
+            </div>
+          </div>
+
           <p class="card-summary">${escapeHtml(sk.summary || "")}</p>
+
           <div class="skill-tag-cloud">
-            ${(sk.tags || []).map((t) => `<span class="skill-tag">${escapeHtml(t)}</span>`).join("")}
+            ${(sk.tags || [])
+              .map(
+                (t) => `
+              <button type="button" class="skill-tag-interactive" data-tech="${escapeHtml(t)}" title="Click to filter projects built with ${escapeHtml(t)}">
+                <span>${escapeHtml(t)}</span>
+                <span class="tag-arrow">↗</span>
+              </button>
+            `
+              )
+              .join("")}
+          </div>
+
+          <div class="skill-card-footer">
+            <button type="button" class="skill-explore-btn" data-filter-domain="${sk.id || ""}" data-skill-name="${escapeHtml(sk.title)}">
+              <span>View Related Projects</span>
+              <i data-lucide="arrow-down-right"></i>
+            </button>
           </div>
         </div>
-      `
-        )
+      `;
+        })
         .join("");
+
+      initInteractiveSkillFilters();
     }
 
     // D. PROJECTS GRID (DYNAMIC RENDER)
@@ -597,6 +648,109 @@ document.addEventListener("DOMContentLoaded", () => {
       window.open("admin.html", "_blank");
     }
   });
+
+  // 5.5. INTERACTIVE SKILL-TO-PROJECT LINK ENGINE
+  window.filterProjectsBySkill = function (keyword, displayLabel) {
+    if (!keyword) return;
+    const filterContainer = document.getElementById("activeSkillFilterContainer");
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    const projectCards = document.querySelectorAll(".project-card");
+    const lowerKey = keyword.toLowerCase().trim();
+
+    // Deactivate generic category filter buttons
+    filterBtns.forEach((b) => b.classList.remove("active"));
+
+    let matchCount = 0;
+    projectCards.forEach((card) => {
+      const cardText = card.textContent.toLowerCase();
+      const cardCategory = (card.getAttribute("data-category") || "").toLowerCase();
+      const isMatch = cardText.includes(lowerKey) || cardCategory.includes(lowerKey);
+
+      if (isMatch) {
+        matchCount++;
+        card.style.display = "flex";
+        card.classList.add("skill-matched-highlight");
+        setTimeout(() => card.classList.remove("skill-matched-highlight"), 2800);
+
+        if (typeof gsap !== "undefined") {
+          gsap.fromTo(
+            card,
+            { opacity: 0, scale: 0.95 },
+            { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" }
+          );
+        }
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    // If 0 matches, show all and fall back gracefully
+    if (matchCount === 0) {
+      projectCards.forEach((card) => (card.style.display = "flex"));
+      const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+      if (allBtn) allBtn.classList.add("active");
+    }
+
+    // Render interactive active filter banner
+    if (filterContainer) {
+      filterContainer.innerHTML = `
+        <div class="active-skill-filter-banner hard-shadow">
+          <div>
+            <span>⚡ SHOWING PROJECTS USING: <strong>${escapeHtml(displayLabel || keyword)}</strong> (${matchCount} ${matchCount === 1 ? "Project" : "Projects"} Found)</span>
+          </div>
+          <button type="button" id="clearSkillFilterBtn">Show All Projects ✕</button>
+        </div>
+      `;
+
+      const clearBtn = document.getElementById("clearSkillFilterBtn");
+      if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+          filterContainer.innerHTML = "";
+          const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+          if (allBtn) allBtn.click();
+        });
+      }
+    }
+
+    // Smooth scroll down to #projects
+    if (typeof lenis !== "undefined" && lenis) {
+      lenis.scrollTo("#projects", { offset: -70 });
+    } else {
+      const projSec = document.getElementById("projects");
+      if (projSec) projSec.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    if (typeof ScrollTrigger !== "undefined") {
+      ScrollTrigger.refresh();
+    }
+  };
+
+  function initInteractiveSkillFilters() {
+    // 1. Interactive Tag Click
+    document.querySelectorAll(".skill-tag-interactive").forEach((tagBtn) => {
+      tagBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const tech = tagBtn.getAttribute("data-tech");
+        window.filterProjectsBySkill(tech, tech);
+      });
+    });
+
+    // 2. Explore Domain Projects Click
+    document.querySelectorAll(".skill-explore-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const domain = btn.getAttribute("data-filter-domain") || "";
+        const title = btn.getAttribute("data-skill-name") || domain;
+        window.filterProjectsBySkill(domain || title, title);
+      });
+    });
+
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  }
 
   // 6. PROJECT FILTER FUNCTIONALITY
   const filterBtns = document.querySelectorAll(".filter-btn");

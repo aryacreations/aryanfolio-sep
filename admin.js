@@ -352,6 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <i data-lucide="${sk.icon || "code"}" style="color: var(--color-accent-gold);"></i>
             <h3 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--admin-ink); margin: 0;">${escapeHtml(sk.title)}</h3>
             <span class="admin-chip" style="background: ${sk.isGold ? "var(--color-accent-gold)" : "rgba(255,255,255,0.1)"}; color: #111;">${escapeHtml(sk.chip || "STACK")}</span>
+            <span class="admin-chip" style="background: #2EC4B6; color: #0F1714; font-weight: 800;">${sk.proficiency || 95}% · ${escapeHtml(sk.level || "EXPERT")}</span>
           </div>
           <div style="display: flex; gap: 8px;">
             <button class="btn-adm btn-adm-sm btn-adm-outline edit-skill-modal-btn" data-idx="${idx}">
@@ -378,6 +379,21 @@ document.addEventListener("DOMContentLoaded", () => {
               <option value="true" ${sk.isGold ? "selected" : ""}>Yes (Gold Highlight)</option>
               <option value="false" ${!sk.isGold ? "selected" : ""}>No (Standard Card)</option>
             </select>
+          </div>
+        </div>
+
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label>Proficiency (0-100%)</label>
+            <input type="number" class="sk-proficiency" data-idx="${idx}" value="${sk.proficiency || 95}" min="50" max="100">
+          </div>
+          <div class="form-group">
+            <label>Level Badge</label>
+            <input type="text" class="sk-level" data-idx="${idx}" value="${escapeHtml(sk.level || "EXPERT")}">
+          </div>
+          <div class="form-group">
+            <label>Experience / Rating</label>
+            <input type="text" class="sk-exp" data-idx="${idx}" value="${escapeHtml(sk.exp || "Production-Ready")}">
           </div>
         </div>
 
@@ -471,6 +487,9 @@ document.addEventListener("DOMContentLoaded", () => {
       setVal("editSkillChip", "STACK");
       setVal("editSkillGold", "false");
       setVal("editSkillIcon", "code");
+      setVal("editSkillProficiency", "95");
+      setVal("editSkillLevel", "EXPERT");
+      setVal("editSkillExp", "2+ Yrs · ★ 4.9/5.0");
       setVal("editSkillSummary", "");
       setVal("editSkillTags", "");
     } else {
@@ -479,6 +498,9 @@ document.addEventListener("DOMContentLoaded", () => {
       setVal("editSkillChip", sk.chip || "");
       setVal("editSkillGold", sk.isGold ? "true" : "false");
       setVal("editSkillIcon", sk.icon || "code");
+      setVal("editSkillProficiency", sk.proficiency || 95);
+      setVal("editSkillLevel", sk.level || "EXPERT");
+      setVal("editSkillExp", sk.exp || "Production-Ready");
       setVal("editSkillSummary", sk.summary || "");
       setVal("editSkillTags", (sk.tags || []).join(", "));
     }
@@ -509,12 +531,17 @@ document.addEventListener("DOMContentLoaded", () => {
         .map((t) => t.trim())
         .filter(Boolean);
 
+      const profVal = parseInt(getVal("editSkillProficiency"), 10) || 95;
       const skillObj = {
         id: idx === -1 ? `skill-${Date.now()}` : currentData.skills[idx].id || `skill-${idx}`,
         title: title,
         chip: getVal("editSkillChip").trim() || "STACK",
         isGold: getVal("editSkillGold") === "true",
         icon: getVal("editSkillIcon").trim() || "code",
+        proficiency: profVal,
+        level: getVal("editSkillLevel") || (profVal >= 95 ? "MASTER" : profVal >= 90 ? "EXPERT" : "ADVANCED"),
+        exp: getVal("editSkillExp").trim() || "Production-Ready",
+        rating: "4.9/5.0",
         summary: getVal("editSkillSummary").trim(),
         tags: tagsArray
       };
@@ -1077,6 +1104,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const skTitles = document.querySelectorAll(".sk-title");
     const skChips = document.querySelectorAll(".sk-chip");
     const skGolds = document.querySelectorAll(".sk-gold");
+    const skProfs = document.querySelectorAll(".sk-proficiency");
+    const skLevels = document.querySelectorAll(".sk-level");
+    const skExps = document.querySelectorAll(".sk-exp");
     const skSummaries = document.querySelectorAll(".sk-summary");
     const skTags = document.querySelectorAll(".sk-tags");
 
@@ -1092,6 +1122,9 @@ document.addEventListener("DOMContentLoaded", () => {
           currentData.skills[i].title = t.value;
           currentData.skills[i].chip = skChips[i]?.value || "";
           currentData.skills[i].isGold = skGolds[i]?.value === "true";
+          currentData.skills[i].proficiency = parseInt(skProfs[i]?.value, 10) || currentData.skills[i].proficiency || 95;
+          currentData.skills[i].level = skLevels[i]?.value || currentData.skills[i].level || "EXPERT";
+          currentData.skills[i].exp = skExps[i]?.value || currentData.skills[i].exp || "Production-Ready";
           currentData.skills[i].summary = skSummaries[i]?.value || "";
           currentData.skills[i].tags = tagArray;
         }

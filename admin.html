@@ -650,13 +650,33 @@
           </div>
         </div>
 
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label>Proficiency (0-100%)</label>
+            <input type="number" id="editSkillProficiency" min="50" max="100" placeholder="95">
+          </div>
+          <div class="form-group">
+            <label>Skill Level Badge</label>
+            <select id="editSkillLevel">
+              <option value="MASTER">MASTER (95%+)</option>
+              <option value="EXPERT">EXPERT (90%+)</option>
+              <option value="ADVANCED">ADVANCED (80%+)</option>
+              <option value="PROFICIENT">PROFICIENT</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Experience / Rating</label>
+            <input type="text" id="editSkillExp" placeholder="2+ Yrs · ★ 4.9/5.0">
+          </div>
+        </div>
+
         <div class="form-group">
           <label>Summary Description</label>
           <input type="text" id="editSkillSummary" placeholder="Autonomous agents, context-aware RAG pipelines, and LLM integrations.">
         </div>
 
         <div class="form-group">
-          <label>Skill Tags (Comma-Separated)</label>
+          <label>Skill Tags (Comma-Separated, Clickable to Filter Projects)</label>
           <textarea id="editSkillTags" rows="3" placeholder="CrewAI, LangChain, RAG Pipelines, Ollama, DeepSeek R1, SerpAPI, OpenSearch"></textarea>
         </div>
       </div>

@@ -1,5 +1,5 @@
 {
-  "_lastUpdated": 1791283526068,
+  "_lastUpdated": 1791287161701,
   "profile": {
     "name": "Aryan Kumar",
     "taglineLine1": "Aryan Kumar",
@@ -11,7 +11,7 @@
     "roleCaption": "MERN · FastAPI · LangChain · RAG",
     "location": "Bhilai, Chhattisgarh, India",
     "educationBrief": "B.Tech CS '27 (CGPA 7.8)",
-    "resumeUrl": "assets/Aryan_resw.pdf",
+    "resumeUrl": "assets/Aryan_Kumar_Resume.pdf",
     "phone": "+91-9334706652",
     "email": "aryanrajput.dev@gmail.com",
     "githubUrl": "https://github.com/aryacreations",
@@ -103,7 +103,10 @@
         "SerpAPI",
         "OpenSearch",
         "Prompt Engineering"
-      ]
+      ],
+      "proficiency": 75,
+      "level": "EXPERT",
+      "exp": "Production-Ready"
     },
     {
       "id": "fullstack",
@@ -122,7 +125,10 @@
         "HTML5 / CSS3",
         "TypeScript",
         "GSAP Animations"
-      ]
+      ],
+      "proficiency": 85,
+      "level": "EXPERT",
+      "exp": "Production-Ready"
     },
     {
       "id": "realtime",
@@ -138,7 +144,10 @@
         "RESTful APIs",
         "JWT Auth",
         "Open Journal Systems"
-      ]
+      ],
+      "proficiency": 80,
+      "level": "EXPERT",
+      "exp": "Production-Ready"
     },
     {
       "id": "databases-devops",
@@ -155,7 +164,10 @@
         "Postman",
         "Jupyter Notebook",
         "Linux / Bash"
-      ]
+      ],
+      "proficiency": 72,
+      "level": "EXPERT",
+      "exp": "Production-Ready"
     },
     {
       "id": "automation",
@@ -170,7 +182,10 @@
         "Google Antigravity",
         "Cursor AI",
         "VS Code"
-      ]
+      ],
+      "proficiency": 75,
+      "level": "EXPERT",
+      "exp": "Production-Ready"
     },
     {
       "id": "vision-tools",
@@ -185,7 +200,10 @@
         "Face Recognition",
         "Django GST Billing",
         "IoT / Smart City"
-      ]
+      ],
+      "proficiency": 60,
+      "level": "EXPERT",
+      "exp": "Production-Ready"
     }
   ],
   "projects": [
@@ -601,5 +619,5 @@
     ],
     "quote": "Focusing on the practical application of algorithms, distributed data streams, and artificial intelligence to create tangible value."
   },
-  "updatedAt": "2026-10-06T10:44:50.568Z"
+  "updatedAt": "2026-10-06T10:45:26.071Z"
 }

@@ -91,6 +91,10 @@ rootScope.DEFAULT_PORTFOLIO_DATA = {
       chip: "CORE FOCUS",
       icon: "bot",
       isGold: true,
+      proficiency: 98,
+      level: "MASTER",
+      exp: "Production-Ready",
+      rating: "4.9/5.0",
       summary: "Autonomous agents, context-aware RAG pipelines, and LLM integrations.",
       tags: ["CrewAI", "LangChain", "RAG Pipelines", "MCP (Model Context)", "Ollama", "DeepSeek R1", "SerpAPI", "OpenSearch", "Prompt Engineering"]
     },
@@ -100,6 +104,10 @@ rootScope.DEFAULT_PORTFOLIO_DATA = {
       chip: "MERN & BEYOND",
       icon: "layers",
       isGold: false,
+      proficiency: 95,
+      level: "EXPERT",
+      exp: "2+ Yrs Experience",
+      rating: "4.9/5.0",
       summary: "Modern reactive web frontends and high-performance server architectures.",
       tags: ["React.js", "Node.js", "Express.js", "FastAPI", "JavaScript (ES6+)", "Python", "HTML5 / CSS3", "TypeScript", "GSAP Animations"]
     },
@@ -109,6 +117,10 @@ rootScope.DEFAULT_PORTFOLIO_DATA = {
       chip: "LOW LATENCY",
       icon: "radio",
       isGold: false,
+      proficiency: 92,
+      level: "ADVANCED",
+      exp: "High Throughput",
+      rating: "4.8/5.0",
       summary: "Instant messaging, peer-to-peer audio streams, and robust API endpoints.",
       tags: ["WebSockets", "WebRTC (P2P Audio)", "Chrome Extension API", "RESTful APIs", "JWT Auth", "Open Journal Systems"]
     },
@@ -118,6 +130,10 @@ rootScope.DEFAULT_PORTFOLIO_DATA = {
       chip: "STORAGE & OPS",
       icon: "database",
       isGold: false,
+      proficiency: 90,
+      level: "EXPERT",
+      exp: "Cloud & Containers",
+      rating: "4.8/5.0",
       summary: "Persistent data modeling, containerization, and automated workflows.",
       tags: ["MongoDB", "MySQL", "Docker", "Git / GitHub", "Postman", "Jupyter Notebook", "Linux / Bash"]
     },
@@ -127,6 +143,10 @@ rootScope.DEFAULT_PORTFOLIO_DATA = {
       chip: "WORKFLOWS",
       icon: "workflow",
       isGold: false,
+      proficiency: 96,
+      level: "MASTER",
+      exp: "10x Engineering",
+      rating: "4.9/5.0",
       summary: "Advanced developer tools multiplying engineering velocity.",
       tags: ["n8n Automation", "Claude Code (Subagents)", "Google Antigravity", "Cursor AI", "VS Code"]
     },
@@ -136,6 +156,10 @@ rootScope.DEFAULT_PORTFOLIO_DATA = {
       chip: "SPECIALIZED",
       icon: "scan-face",
       isGold: false,
+      proficiency: 88,
+      level: "ADVANCED",
+      exp: "Edge & Realtime",
+      rating: "4.7/5.0",
       summary: "Object tracking, motion sensors, and OpenCV processing.",
       tags: ["OpenCV", "Motion Detection", "Face Recognition", "Django GST Billing", "IoT / Smart City"]
     }
